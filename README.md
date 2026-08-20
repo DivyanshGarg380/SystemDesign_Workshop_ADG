@@ -1,4 +1,4 @@
-# HLD Workshop — "What Actually Happens When You Tap a Button?"
+# HLD Workshop
 
 An interactive, keyboard-driven, non-scrolling slide deck for the MIT Manipal High-Level
 System Design workshop. Built with React + TypeScript + Framer Motion + Tailwind CSS v4.
