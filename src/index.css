@@ -1,0 +1,72 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@theme {
+  /* Light theme: soft warm-gray canvas, not stark white — easier on the eyes for a long live session */
+  --color-void: #e9ebee;
+  --color-panel: #ffffff;
+  --color-panel-2: #f4f5f7;
+  --color-line: #c3c9d1;
+  --color-line-soft: #d8dce1;
+  --color-ink-100: #1a2027;
+  --color-ink-300: #3d4650;
+  --color-ink-400: #626d79;
+  --color-ink-600: #9aa4b0;
+  --color-amber: #c97c11;
+  --color-amber-soft: #c97c1126;
+  --color-teal: #0f8a76;
+  --color-teal-soft: #0f8a7626;
+  --color-red: #c2412f;
+  --color-red-soft: #c2412f26;
+  --color-chip-ink: #14181d;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: var(--color-void);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink-100);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-amber-soft);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* subtle grid texture on the void background, evokes a schematic / blueprint field */
+.bg-blueprint {
+  background-color: var(--color-void);
+  background-image:
+    linear-gradient(var(--color-line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line-soft) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
