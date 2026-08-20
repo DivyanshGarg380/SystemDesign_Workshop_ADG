@@ -2,19 +2,9 @@
 
 An interactive, keyboard-driven, non-scrolling slide deck for the MIT Manipal High-Level
 System Design workshop. Built with React + TypeScript + Framer Motion + Tailwind CSS v4.
+
 No slides in the PowerPoint sense — every "slide" is a live scene where request packets,
 servers, caches, and queues visually animate to explain the concept, not decorate it.
-
-## Run it
-
-```bash
-npm install
-npm run dev
-```
-
-Then open the printed local URL (usually `http://localhost:5173`) in a browser, ideally
-projected at 16:9. For the actual talk, `npm run build && npm run preview` serves the
-production build, which is snappier.
 
 ## Controls
 
@@ -57,7 +47,7 @@ The **request packet** (the small pill that travels between nodes) is the one
 recurring visual motif — it's introduced in Part 1 and reused, relabeled, all the
 way through observability in Part 12.
 
-## Sections / scenes implemented
+## Sections / scenes
 
 1. **Web Basics** — title, click-a-button, client & server, request/response,
    the database, APIs & static vs. dynamic content
