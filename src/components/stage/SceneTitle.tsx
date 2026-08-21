@@ -10,15 +10,15 @@ export default function SceneTitle({ eyebrow, title, sub }: { eyebrow?: string; 
       className="absolute left-[72px] top-[52px] max-w-[900px]"
     >
       {eyebrow && (
-        <div className="font-mono text-[14px] tracking-[0.14em] uppercase mb-1.5" style={{ color: 'var(--color-amber)' }}>
+        <div className="font-mono text-[16px] tracking-[0.14em] uppercase mb-2" style={{ color: 'var(--color-amber)' }}>
           {eyebrow}
         </div>
       )}
-      <h1 className="font-display font-semibold text-[40px] leading-[1.08]" style={{ color: 'var(--color-ink-100)' }}>
+      <h1 className="font-display font-semibold text-[46px] leading-[1.08]" style={{ color: 'var(--color-ink-100)' }}>
         {title}
       </h1>
       {sub && (
-        <p className="font-body text-[19px] mt-2" style={{ color: 'var(--color-ink-400)' }}>
+        <p className="font-body text-[21px] mt-2.5" style={{ color: 'var(--color-ink-400)' }}>
           {sub}
         </p>
       )}

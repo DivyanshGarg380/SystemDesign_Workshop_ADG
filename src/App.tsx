@@ -4,11 +4,13 @@ import { flatScenes, sectionCount } from './data/scenes';
 import Stage from './components/stage/Stage';
 import ProgressBar from './components/ProgressBar';
 import Footer from './components/Footer';
+import SceneOverview from './components/Sceneoverview';
 
 export default function App() {
   const [sceneIdx, setSceneIdx] = useState(0);
   const [step, setStep] = useState(0);
   const [showNotes, setShowNotes] = useState(false);
+  const [overviewOpen, setOverviewOpen] = useState(false);
 
   const scene = flatScenes[sceneIdx];
 
@@ -42,8 +44,17 @@ export default function App() {
     setStep(0);
   }, []);
 
+  const jumpTo = useCallback((index: number) => {
+    setSceneIdx(index);
+    setStep(0);
+    setOverviewOpen(false);
+  }, []);
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') { if (overviewOpen) { e.preventDefault(); setOverviewOpen(false); } return; }
+      if (e.key.toLowerCase() === 'o') { e.preventDefault(); setOverviewOpen((v) => !v); return; }
+      if (overviewOpen) return;
       if (['ArrowRight', ' ', 'Spacebar'].includes(e.key)) { e.preventDefault(); next(); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
       else if (e.key === 'Home') { e.preventDefault(); setSceneIdx(0); setStep(0); }
@@ -57,13 +68,13 @@ export default function App() {
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [next, prev, skipSection]);
+  }, [next, prev, skipSection, overviewOpen]);
 
   const SceneComponent = scene.Component;
 
   return (
     <div className="flex flex-col w-screen h-screen" style={{ background: 'var(--color-void)' }}>
-      <ProgressBar scenes={flatScenes} sceneIdx={sceneIdx} sectionCount={sectionCount} />
+      <ProgressBar scenes={flatScenes} sceneIdx={sceneIdx} sectionCount={sectionCount} onOpenOverview={() => setOverviewOpen(true)} />
       <div className="relative flex-1 min-h-0">
         <Stage>
           <AnimatePresence mode="wait">
@@ -81,6 +92,13 @@ export default function App() {
         </Stage>
       </div>
       <Footer notes={scene.notes} showNotes={showNotes} />
+      <SceneOverview
+        scenes={flatScenes}
+        currentSceneId={scene.id}
+        open={overviewOpen}
+        onJump={jumpTo}
+        onClose={() => setOverviewOpen(false)}
+      />
     </div>
   );
 }

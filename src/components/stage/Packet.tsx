@@ -10,6 +10,10 @@ const VARIANT_STYLES: Record<PacketVariant, { bg: string; fg: string; border: st
   job: { bg: 'var(--color-panel)', fg: 'var(--color-amber)', border: 'var(--color-amber)' },
 };
 
+/** presentation-scale + slow-motion multipliers — bigger, slower motion reads better live */
+const SIZE_SCALE = 1.3;
+const SPEED_SCALE = 1.55;
+
 export interface PacketProps {
   from: { x: number; y: number };
   to: { x: number; y: number };
@@ -28,7 +32,9 @@ export default function Packet({
   const style = VARIANT_STYLES[variant];
   const endX = from.x + (to.x - from.x) * stopAt;
   const endY = from.y + (to.y - from.y) * stopAt;
-  const h = small ? 26 : 34;
+  const h = (small ? 30 : 40) * SIZE_SCALE;
+  const dur = duration * SPEED_SCALE;
+  const dly = delay * SPEED_SCALE;
 
   return (
     <motion.div
@@ -37,24 +43,24 @@ export default function Packet({
       initial={{ x: from.x, y: from.y, opacity: 0 }}
       animate={{ x: endX, y: endY, opacity: [0, 1, 1, 0] }}
       transition={{
-        default: { duration, delay, ease: variant === 'blocked' ? 'easeOut' : 'easeInOut' },
-        opacity: { duration: duration + 0.45, delay, times: [0, 0.3, 0.68, 1], ease: 'easeInOut' },
+        default: { duration: dur, delay: dly, ease: variant === 'blocked' ? 'easeOut' : 'easeInOut' },
+        opacity: { duration: dur + 0.7, delay: dly, times: [0, 0.28, 0.7, 1], ease: 'easeInOut' },
       }}
     >
       <motion.div
         initial={{ scale: 0.6 }}
         animate={{ scale: 1 }}
-        transition={{ delay, duration: 0.25 }}
+        transition={{ delay: dly, duration: 0.35 }}
         className="flex items-center justify-center rounded-full font-mono whitespace-nowrap"
         style={{
           height: h, transform: 'translate(-50%, -50%)',
-          paddingLeft: label ? 12 : 0, paddingRight: label ? 12 : 0,
+          paddingLeft: label ? 16 : 0, paddingRight: label ? 16 : 0,
           width: label ? 'auto' : h,
           background: style.bg, color: style.fg,
-          border: `1px solid ${style.border}`,
-          fontSize: small ? 11 : 12.5,
+          border: `1.5px solid ${style.border}`,
+          fontSize: (small ? 13 : 15) * SIZE_SCALE,
           fontWeight: 600,
-          boxShadow: `0 2px 10px -2px ${style.border}66`,
+          boxShadow: `0 3px 14px -2px ${style.border}77`,
         }}
       >
         {label}

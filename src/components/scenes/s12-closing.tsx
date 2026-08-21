@@ -61,7 +61,47 @@ function ClosingScene() {
   );
 }
 
+function CreditsScene() {
+  return (
+    <div className="absolute inset-0 flex flex-col items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.94, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="flex flex-col items-center"
+      >
+        <div className="font-mono text-[15px] tracking-[0.18em] uppercase mb-6" style={{ color: 'var(--color-ink-400)' }}>
+          Presented by
+        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="rounded-[32px] p-10 flex items-center justify-center"
+          style={{ background: '#0b0b0d', boxShadow: '0 30px 70px -20px rgba(20,24,29,0.35), 0 0 0 1px var(--color-line-soft)' }}
+        >
+          <img src="/adg-logo.png" alt="Apple Developers Group, Manipal" style={{ width: 340, height: 'auto', display: 'block' }} />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9, duration: 0.6 }}
+          className="text-center mt-9"
+        >
+          <div className="font-display font-semibold text-[30px]" style={{ color: 'var(--color-ink-100)' }}>
+            ADG Manipal
+          </div>
+          <div className="font-body text-[17px] mt-1.5" style={{ color: 'var(--color-ink-400)' }}>
+            Apple Developers Group &middot; MIT Manipal
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
 export const section12Scenes: SceneDef[] = [
   { id: 'recap', title: 'Recap', steps: 7, Component: RecapScene },
   { id: 'closing', title: 'Closing message', steps: 1, Component: ClosingScene, notes: 'End here. Thank the room.' },
+  { id: 'credits', title: 'Credits', steps: 1, Component: CreditsScene, notes: 'Hold here for applause / questions.' },
 ];
