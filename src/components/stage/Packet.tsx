@@ -10,9 +10,9 @@ const VARIANT_STYLES: Record<PacketVariant, { bg: string; fg: string; border: st
   job: { bg: 'var(--color-panel)', fg: 'var(--color-amber)', border: 'var(--color-amber)' },
 };
 
-/** presentation-scale + slow-motion multipliers — bigger, slower motion reads better live */
+/** presentation-scale + slow-motion multipliers: bigger, slower motion reads better live */
 const SIZE_SCALE = 1.3;
-const SPEED_SCALE = 1.55;
+const SPEED_SCALE = 1.85;
 
 export interface PacketProps {
   from: { x: number; y: number };
@@ -44,7 +44,7 @@ export default function Packet({
       animate={{ x: endX, y: endY, opacity: [0, 1, 1, 0] }}
       transition={{
         default: { duration: dur, delay: dly, ease: variant === 'blocked' ? 'easeOut' : 'easeInOut' },
-        opacity: { duration: dur + 0.7, delay: dly, times: [0, 0.28, 0.7, 1], ease: 'easeInOut' },
+        opacity: { duration: dur + 0.55, delay: dly, times: [0, 0.24, 0.6, 1], ease: 'easeInOut' },
       }}
     >
       <motion.div

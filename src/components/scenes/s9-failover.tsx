@@ -3,12 +3,12 @@ import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt } from '../stage';
 import type { SceneDef } from '../../lib/types';
 
 const LB = { x: 480, y: 480 };
-const SERVERS = [{ x: 900, y: 320 }, { x: 900, y: 480 }, { x: 900, y: 640 }];
+const SERVERS = [{ x: 900, y: 260 }, { x: 900, y: 480 }, { x: 900, y: 700 }];
 
 function HealthCheckScene({ step }: { step: number }) {
   return (
     <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 10 · Optional — Something Fails" title="The load balancer keeps asking: are you okay?" sub="A regular health check, to every server, all the time." />
+      <SceneTitle eyebrow="Part 10 · Optional, Something Fails" title="The load balancer keeps asking: are you okay?" sub="A regular health check, to every server, all the time." />
       <Node x={LB.x} y={LB.y} type="loadbalancer" label="Load Balancer" status="active" />
       {SERVERS.map((s, i) => <Node key={i} x={s.x} y={s.y} type="server" label={`Server ${i + 1}`} status="healthy" />)}
       <EdgeLayer>{SERVERS.map((s, i) => <Edge key={i} from={LB} to={s} muted dashed />)}</EdgeLayer>
@@ -58,7 +58,7 @@ function RedundancyScene() {
         </h1>
         <p className="font-body text-[18px] mt-4" style={{ color: 'var(--color-ink-400)' }}>
           Multiple servers is redundancy. Automatic failover is what makes a system <i>highly available</i>.
-          And none of this replaces backups — a separate, regular copy of your data, for the day
+          And none of this replaces backups: a separate, regular copy of your data, for the day
           replication itself isn't enough.
         </p>
       </motion.div>

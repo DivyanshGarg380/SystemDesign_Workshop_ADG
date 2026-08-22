@@ -10,7 +10,7 @@ function DbStrainScene({ step }: { step: number }) {
   const delays = stagger(9, 0.1);
   return (
     <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 9 · Optional — Database Under Strain" title="Caching helped. The database is still one machine." sub="Every read and every write still lands on the same box." />
+      <SceneTitle eyebrow="Part 9 · Optional, Database Under Strain" title="Caching helped. The database is still one machine." sub="Every read and every write still lands on the same box." />
       <Node x={SERVER.x} y={SERVER.y} type="server" label="Servers" status="active" />
       <Node x={DB.x} y={DB.y} type="database" label="Database" status={step >= 1 ? 'overloaded' : 'idle'} />
       <EdgeLayer><Edge from={SERVER} to={DB} muted /></EdgeLayer>
@@ -24,7 +24,7 @@ function DbStrainScene({ step }: { step: number }) {
 
 function ReadReplicasScene({ step }: { step: number }) {
   const PRIMARY = { x: 900, y: 480 };
-  const REPLICAS = [{ x: 1250, y: 340 }, { x: 1250, y: 480 }, { x: 1250, y: 620 }];
+  const REPLICAS = [{ x: 1250, y: 280 }, { x: 1250, y: 480 }, { x: 1250, y: 680 }];
   return (
     <div className="absolute inset-0">
       <SceneTitle eyebrow="Part 9 · Optional" title="Read replicas take the read load off the primary." sub="Writes go to the primary. It replicates to the replicas, which handle reads." />
@@ -61,7 +61,7 @@ function ShardingScene({ step }: { step: number }) {
       )}
       {step === 1 && (
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1 } }} className="absolute font-body text-[17px] max-w-[520px]" style={{ left: 900, top: 760, color: 'var(--color-ink-400)' }}>
-          High-level only — sharding brings real complexity (cross-shard queries, rebalancing) worth its own future session.
+          High-level only. Sharding brings real complexity (cross-shard queries, rebalancing) worth its own future session.
         </motion.p>
       )}
     </div>

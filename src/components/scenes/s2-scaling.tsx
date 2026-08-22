@@ -55,7 +55,7 @@ function VerticalScene({ step }: { step: number }) {
       <EdgeLayer><Edge from={SERVER} to={DB} muted /></EdgeLayer>
       {step >= 2 && (
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="absolute font-body text-[19px] max-w-[560px]" style={{ left: 620, top: 690, color: 'var(--color-ink-400)' }}>
-          It helps — for a while. But a single machine still has a ceiling,
+          It helps, for a while. But a single machine still has a ceiling,
           and if that one machine goes down, <b style={{ color: 'var(--color-red)' }}>everything</b> goes down with it.
         </motion.div>
       )}
@@ -128,5 +128,5 @@ export const section2Scenes: SceneDef[] = [
   { id: 'overload', title: 'One server floods', steps: 3, Component: OverloadScene, notes: 'Let the room shout guesses before advancing.' },
   { id: 'vertical', title: 'Vertical scaling', steps: 3, Component: VerticalScene },
   { id: 'horizontal', title: 'Horizontal scaling', steps: 2, Component: HorizontalScene },
-  { id: 'load-balancer', title: 'The load balancer', steps: 4, Component: LoadBalancerScene, notes: 'Core concept — take your time.' },
+  { id: 'load-balancer', title: 'The load balancer', steps: 4, Component: LoadBalancerScene, notes: 'Core concept, take your time.' },
 ];

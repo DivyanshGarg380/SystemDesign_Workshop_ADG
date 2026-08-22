@@ -10,15 +10,15 @@ export interface EdgeProps {
 }
 
 export function Edge({ from, to, active = false, dashed = false, muted = false, color }: EdgeProps) {
-  const stroke = color ?? (active ? 'var(--color-amber)' : muted ? 'var(--color-line-soft)' : 'var(--color-line)');
+  const stroke = color ?? (active ? 'var(--color-amber)' : 'var(--color-line)');
   return (
     <motion.line
       x1={from.x} y1={from.y} x2={to.x} y2={to.y}
       stroke={stroke}
-      strokeWidth={active ? 2.5 : 2}
-      strokeDasharray={dashed ? '6 6' : undefined}
+      strokeWidth={active ? 2.75 : 2.25}
+      strokeDasharray={dashed ? '7 7' : undefined}
       initial={{ opacity: 0 }}
-      animate={{ opacity: muted ? 0.3 : 1 }}
+      animate={{ opacity: muted ? 0.65 : 1 }}
       transition={{ duration: 0.4 }}
     />
   );

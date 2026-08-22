@@ -11,7 +11,7 @@ function AiProblemScene({ step }: { step: number }) {
   const delays = stagger(10, 0.09);
   return (
     <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 7 · AI-based Requests" title='LabXam adds "Explain this answer with AI."' sub="Each explanation is expensive to generate — real compute, real cost." />
+      <SceneTitle eyebrow="Part 7 · AI-based Requests" title='LabXam adds "Explain this answer with AI."' sub="Each explanation is expensive to generate: real compute, real cost." />
       <Node x={USER.x} y={USER.y} type="user" label="One student" status={step >= 1 ? 'overloaded' : 'active'} />
       <Node x={AI.x} y={AI.y} type="worker" label="AI Service" status={step >= 1 ? 'overloaded' : 'idle'} />
       <EdgeLayer><Edge from={USER} to={AI} muted /></EdgeLayer>
@@ -51,7 +51,7 @@ function RateLimitScene({ step }: { step: number }) {
       ))}
       {step === 2 && (
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.4 } }} className="absolute font-body text-[17px]" style={{ left: 500, top: 700, color: 'var(--color-ink-400)' }}>
-          Excess requests are rejected early — cheaply — before they reach the expensive service.
+          Excess requests are rejected early, cheaply, before they reach the expensive service.
         </motion.p>
       )}
     </div>
@@ -75,13 +75,13 @@ function AiQueueCacheScene({ step }: { step: number }) {
         <Edge from={WORKER} to={CACHE} muted />
       </EdgeLayer>
       {step >= 1 && <Packet from={USER} to={QUEUE} label="explain Q7" variant="request" duration={0.6} />}
-      {step >= 1 && <Packet from={QUEUE} to={USER} label="202 — we'll notify you" variant="response" duration={0.6} delay={0.2} />}
+      {step >= 1 && <Packet from={QUEUE} to={USER} label="202, we'll notify you" variant="response" duration={0.6} delay={0.2} />}
       {step >= 2 && <Packet from={QUEUE} to={WORKER} label="job" variant="job" duration={0.6} />}
       {step >= 3 && <Packet from={WORKER} to={CACHE} label="store answer" variant="data" duration={0.6} />}
       {step >= 4 && <Packet from={CACHE} to={USER} label="answer ready" variant="response" duration={0.9} />}
       {step === 4 && (
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1 } }} className="absolute font-display font-semibold text-[19px]" style={{ left: 700, top: 700, color: 'var(--color-teal)' }}>
-          Next student asking the same question? Straight from the cache — no AI call at all.
+          Next student asking the same question? Straight from the cache, no AI call at all.
         </motion.p>
       )}
     </div>
@@ -91,5 +91,5 @@ function AiQueueCacheScene({ step }: { step: number }) {
 export const section6Scenes: SceneDef[] = [
   { id: 'ai-problem', title: 'One user, 500 AI requests', steps: 3, Component: AiProblemScene },
   { id: 'rate-limit', title: 'Rate limiting', steps: 3, Component: RateLimitScene, notes: 'Core concept.' },
-  { id: 'ai-queue-cache', title: 'Queue, worker, cache — together', steps: 5, Component: AiQueueCacheScene, notes: 'Nice moment to show concepts composing.' },
+  { id: 'ai-queue-cache', title: 'Queue, worker, cache: together', steps: 5, Component: AiQueueCacheScene, notes: 'Nice moment to show concepts composing.' },
 ];

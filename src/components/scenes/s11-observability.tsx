@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { ScrollText, Gauge, Radio } from 'lucide-react';
 import { Node, Packet, EdgeLayer, Edge, SceneTitle } from '../stage';
 import type { SceneDef } from '../../lib/types';
 
@@ -11,7 +12,7 @@ const DB = { x: 1000, y: 630 };
 function TraceScene({ step }: { step: number }) {
   return (
     <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 12 · Optional — Knowing What's Broken" title="One request, moving through many components." sub="It touches the balancer, the server, the cache, and the database. If it's slow, where do you even look?" />
+      <SceneTitle eyebrow="Part 12 · Optional, Knowing What's Broken" title="One request, moving through many components." sub="It touches the balancer, the server, the cache, and the database. If it's slow, where do you even look?" />
       <Node x={USER.x} y={USER.y} type="user" label="Student" status="idle" size={72} />
       <Node x={LB.x} y={LB.y} type="loadbalancer" label="LB" status="idle" size={72} />
       <Node x={SERVER.x} y={SERVER.y} type="server" label="Server" status="idle" size={72} />
@@ -35,27 +36,35 @@ function TraceScene({ step }: { step: number }) {
 
 function BreakdownScene({ step }: { step: number }) {
   const items = [
-    { key: 'logs', label: 'Logs', desc: '"cache miss for key exam:4 at 23:41:02" — individual events, exact and detailed.' },
-    { key: 'metrics', label: 'Metrics', desc: 'requests/sec, error rate, p99 latency — numbers, tracked over time.' },
-    { key: 'trace', label: 'Tracing', desc: 'the full path one request took, hop by hop, with timing for each.' },
+    { key: 'logs', label: 'Logs', Icon: ScrollText, desc: '"cache miss for key exam:4 at 23:41:02": individual events, exact and detailed.' },
+    { key: 'metrics', label: 'Metrics', Icon: Gauge, desc: 'requests/sec, error rate, p99 latency: numbers, tracked over time.' },
+    { key: 'trace', label: 'Tracing', Icon: Radio, desc: 'the full path one request took, hop by hop, with timing for each.' },
   ] as const;
   return (
     <div className="absolute inset-0">
       <SceneTitle eyebrow="Part 12 · Optional" title="Three different lenses on the same system." />
-      <div className="absolute left-[130px] top-[240px] flex gap-14">
-        {items.map((it, i) => (
-          <motion.div
-            key={it.key}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: step >= i ? 1 : 0.25, y: 0 }}
-            transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="relative w-[420px] rounded-2xl p-6"
-            style={{ background: 'var(--color-panel-2)', border: `1px solid ${step >= i ? 'var(--color-teal)' : 'var(--color-line)'}` }}
-          >
-            <Node x={210} y={70} type={it.key === 'logs' ? 'log' : it.key === 'metrics' ? 'metric' : 'trace'} label={it.label} status={step >= i ? 'healthy' : 'idle'} />
-            <p className="font-body text-[15px] mt-16" style={{ color: 'var(--color-ink-400)' }}>{it.desc}</p>
-          </motion.div>
-        ))}
+      <div className="absolute left-[130px] top-[280px] flex gap-10">
+        {items.map(({ key, label, Icon, desc }, i) => {
+          const active = step >= i;
+          return (
+            <motion.div
+              key={key}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: active ? 1 : 0.35, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              className="flex flex-col items-start gap-5 w-[380px] rounded-2xl p-8"
+              style={{ background: 'var(--color-panel)', border: `1.5px solid ${active ? 'var(--color-teal)' : 'var(--color-line)'}`, boxShadow: '0 1px 3px rgba(20,24,29,0.06)' }}
+            >
+              <div className="w-[72px] h-[72px] rounded-2xl flex items-center justify-center shrink-0" style={{ background: 'var(--color-panel-2)', border: `2px solid ${active ? 'var(--color-teal)' : 'var(--color-line)'}` }}>
+                <Icon size={32} color={active ? 'var(--color-teal)' : 'var(--color-ink-400)'} strokeWidth={1.75} />
+              </div>
+              <div>
+                <div className="font-display font-semibold text-[22px]" style={{ color: 'var(--color-ink-100)' }}>{label}</div>
+                <p className="font-body text-[15.5px] mt-2 leading-relaxed" style={{ color: 'var(--color-ink-400)' }}>{desc}</p>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );

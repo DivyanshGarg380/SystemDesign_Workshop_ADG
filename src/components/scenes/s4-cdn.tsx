@@ -95,5 +95,5 @@ export const section4Scenes: SceneDef[] = [
   { id: 'large-file-problem', title: 'Large files strain the app server', steps: 3, Component: LargeFileProblemScene },
   { id: 'object-storage', title: 'Object storage', steps: 2, Component: ObjectStorageScene },
   { id: 'distant-origin', title: 'A distant origin is still slow', steps: 2, Component: DistantOriginScene },
-  { id: 'cdn-edge', title: 'CDN: cache near the reader', steps: 2, Component: CdnEdgeScene, notes: 'Core concept — emphasize distance, not magic.' },
+  { id: 'cdn-edge', title: 'CDN: cache near the reader', steps: 2, Component: CdnEdgeScene, notes: 'Core concept, emphasize distance, not magic.' },
 ];

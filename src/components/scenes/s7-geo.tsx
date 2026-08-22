@@ -7,7 +7,7 @@ function LatencyScene({ step }: { step: number }) {
   const ORIGIN = { x: 1350, y: 590 };
   return (
     <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 8 · Optional — Growing Beyond Manipal" title="LabXam spreads to students across the country." sub="Every request still travels to one origin server, no matter how far the student is." />
+      <SceneTitle eyebrow="Part 8 · Optional, Growing Beyond Manipal" title="LabXam spreads to students across the country." sub="Every request still travels to one origin server, no matter how far the student is." />
       <Node x={NEAR.x} y={NEAR.y} type="user" label="Manipal" status="active" />
       <Node x={FAR.x} y={FAR.y} type="user" label="Delhi" status="active" />
       <Node x={ORIGIN.x} y={ORIGIN.y} type="server" label="Origin Server" status="idle" />

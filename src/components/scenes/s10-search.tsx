@@ -9,7 +9,7 @@ const DB = { x: 1150, y: 480 };
 function ScanProblemScene({ step }: { step: number }) {
   return (
     <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 11 · Optional — Large-Scale Search" title='"Search all lab exams for \u2018pointer arithmetic\u2019."' sub="LabXam now holds hundreds of thousands of questions." />
+      <SceneTitle eyebrow="Part 11 · Optional, Large-Scale Search" title='"Search all lab exams for \u2018pointer arithmetic\u2019."' sub="LabXam now holds hundreds of thousands of questions." />
       <Node x={USER.x} y={USER.y} type="user" label="Student" status="active" />
       <Node x={SERVER.x} y={SERVER.y} type="server" label="Server" status={step >= 1 ? 'active' : 'idle'} />
       <Node x={DB.x} y={DB.y} type="database" label="Database" sublabel="700k rows" status={step >= 1 ? 'overloaded' : 'idle'} />

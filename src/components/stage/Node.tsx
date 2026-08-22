@@ -1,18 +1,18 @@
 import { motion } from 'framer-motion';
 import {
   User, Server, Database, Zap, ListOrdered, Cpu, Globe2, Search,
-  Shuffle, HardDrive, Radio, ScrollText, Gauge, Waypoints, XCircle,
+  Shuffle, HardDrive, Radio, ScrollText, Gauge, Waypoints, XCircle, Compass,
   type LucideIcon,
 } from 'lucide-react';
 
 export type NodeType =
   | 'user' | 'server' | 'database' | 'cache' | 'queue' | 'worker'
   | 'cdn' | 'search' | 'loadbalancer' | 'origin' | 'gate' | 'log'
-  | 'metric' | 'trace' | 'replica';
+  | 'metric' | 'trace' | 'replica' | 'dns';
 
 export type NodeStatus = 'idle' | 'active' | 'overloaded' | 'failed' | 'healthy' | 'muted';
 
-/** presentation-scale multiplier — bigger components read better from the back of a room */
+/** presentation-scale multiplier: bigger components read better from the back of a room */
 const SIZE_SCALE = 1.22;
 
 const ICONS: Record<NodeType, LucideIcon> = {
@@ -31,6 +31,7 @@ const ICONS: Record<NodeType, LucideIcon> = {
   metric: Gauge,
   trace: Radio,
   replica: Database,
+  dns: Compass,
 };
 
 const STATUS_STYLES: Record<NodeStatus, { border: string; glow: string; icon: string; bg: string }> = {
@@ -67,7 +68,7 @@ export default function Node({ x, y, type, label, sublabel, status = 'idle', siz
       className="absolute flex flex-col items-center"
       style={{ left: 0, top: 0, width: scaledSize }}
       animate={{ x: x - scaledSize / 2, y: y - scaledSize / 2 - 24 }}
-      transition={{ type: 'tween', duration: 0.85, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{ type: 'tween', duration: 1, ease: [0.22, 1, 0.36, 1], delay }}
     >
       <motion.div
         className="relative flex items-center justify-center rounded-2xl"

@@ -43,16 +43,16 @@ function CacheMissScene({ step }: { step: number }) {
         <Edge from={SERVER} to={DB} muted />
         <Edge from={CACHE} to={DB} muted dashed />
       </EdgeLayer>
-      {step >= 0 && <Packet key={`m0-${step === 0}`} from={USER} to={SERVER} label="GET exam #4" variant="request" duration={step === 0 ? 0.8 : 0.01} />}
-      {step >= 1 && <Packet key={`m1-${step === 1}`} from={SERVER} to={CACHE} label="have it?" variant="request" duration={step === 1 ? 0.8 : 0.01} />}
-      {step >= 2 && <Packet from={CACHE} to={SERVER} label="miss" variant="blocked" duration={0.01} delay={0.02} small />}
-      {step >= 2 && <Packet from={SERVER} to={DB} label="fetch it" variant="request" duration={0.8} />}
-      {step >= 3 && <Packet from={DB} to={SERVER} label="rows" variant="data" duration={0.8} />}
-      {step >= 4 && <Packet from={SERVER} to={CACHE} label="store" variant="data" duration={0.7} />}
-      {step >= 5 && <Packet from={SERVER} to={USER} label="200 OK" variant="response" duration={0.8} />}
+      {step >= 0 && <Packet key={`m0-${step === 0}`} from={USER} to={SERVER} label="GET exam #4" variant="request" duration={step === 0 ? 1.1 : 0.01} />}
+      {step >= 1 && <Packet key={`m1-${step === 1}`} from={SERVER} to={CACHE} label="have it?" variant="request" duration={step === 1 ? 1.1 : 0.01} />}
+      {step === 2 && <Packet from={CACHE} to={SERVER} label="miss" variant="blocked" duration={0.35} small />}
+      {step >= 2 && <Packet from={SERVER} to={DB} label="fetch it" variant="request" duration={1.1} delay={0.5} />}
+      {step >= 3 && <Packet from={DB} to={SERVER} label="rows" variant="data" duration={1.1} />}
+      {step >= 4 && <Packet from={SERVER} to={CACHE} label="store" variant="data" duration={1} />}
+      {step >= 5 && <Packet from={SERVER} to={USER} label="200 OK" variant="response" duration={1.1} />}
       {step === 5 && (
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.9 } }} className="absolute font-body text-[17px] max-w-[420px]" style={{ left: 850, top: 700, color: 'var(--color-ink-400)' }}>
-          Slow — but next time, the cache already has the answer.
+          Slow, but next time, the cache already has the answer.
         </motion.p>
       )}
     </div>
@@ -75,7 +75,7 @@ function CacheHitScene({ step }: { step: number }) {
       {step >= 0 && <Packet from={USER} to={SERVER} label="GET exam #4" variant="request" duration={0.6} />}
       {step >= 1 && <Packet from={SERVER} to={CACHE} label="have it?" variant="request" duration={0.5} />}
       {step >= 2 && <Packet from={CACHE} to={SERVER} label="hit!" variant="response" duration={0.5} />}
-      {step >= 3 && <Packet from={SERVER} to={USER} label="200 OK — fast" variant="response" duration={0.5} />}
+      {step >= 3 && <Packet from={SERVER} to={USER} label="200 OK, fast" variant="response" duration={0.5} />}
       {step === 3 && (
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.7 } }} className="absolute font-display font-semibold text-[20px]" style={{ left: 700, top: 700, color: 'var(--color-teal)' }}>
           Shorter path. No database load. Same answer, far faster.

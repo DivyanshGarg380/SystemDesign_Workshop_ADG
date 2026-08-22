@@ -5,9 +5,9 @@ import type { SceneDef } from '../../lib/types';
 const USER = { x: 260, y: 480 };
 const SERVER = { x: 720, y: 480 };
 const QUEUE = { x: 1120, y: 480 };
-const W1 = { x: 1420, y: 340 };
+const W1 = { x: 1420, y: 250 };
 const W2 = { x: 1420, y: 480 };
-const W3 = { x: 1420, y: 620 };
+const W3 = { x: 1420, y: 710 };
 
 function SyncProblemScene({ step }: { step: number }) {
   return (
@@ -74,7 +74,7 @@ function WorkersScene({ step }: { step: number }) {
       ))}
       {step === 2 && (
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute font-display font-semibold text-[20px]" style={{ left: 220, top: 700, color: 'var(--color-teal)' }}>
-          The queue drains steadily — no one waits, nothing is dropped.
+          The queue drains steadily, no one waits, nothing is dropped.
         </motion.p>
       )}
     </div>
@@ -82,7 +82,7 @@ function WorkersScene({ step }: { step: number }) {
 }
 
 function PubSubScene() {
-  const SUBS = [{ x: 1300, y: 340, label: 'Notifications' }, { x: 1300, y: 480, label: 'Analytics' }, { x: 1300, y: 620, label: 'Search Index' }];
+  const SUBS = [{ x: 1300, y: 250, label: 'Notifications' }, { x: 1300, y: 480, label: 'Analytics' }, { x: 1300, y: 710, label: 'Search Index' }];
   const EVENT = { x: 850, y: 480 };
   return (
     <div className="absolute inset-0">
@@ -101,5 +101,5 @@ export const section5Scenes: SceneDef[] = [
   { id: 'sync-problem', title: 'Synchronous work blocks', steps: 3, Component: SyncProblemScene },
   { id: 'queue-intro', title: 'The queue', steps: 3, Component: QueueIntroScene, notes: 'Core concept.' },
   { id: 'workers', title: 'Workers drain the queue', steps: 3, Component: WorkersScene },
-  { id: 'pubsub', title: 'Publish–subscribe (brief)', steps: 1, Component: PubSubScene, optional: true, notes: 'Skippable if short on time — one line is enough.' },
+  { id: 'pubsub', title: 'Publish-subscribe (brief)', steps: 1, Component: PubSubScene, optional: true, notes: 'Skippable if short on time. One line is enough.' },
 ];
