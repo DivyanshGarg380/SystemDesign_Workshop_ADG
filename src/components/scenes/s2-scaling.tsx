@@ -63,28 +63,31 @@ function VerticalScene({ step }: { step: number }) {
   );
 }
 
-const H_SERVERS = [{ x: 700, y: 480 }, { x: 900, y: 480 }, { x: 1100, y: 480 }];
+const H_SERVERS = [{ x: 950, y: 260 }, { x: 950, y: 480 }, { x: 950, y: 700 }];
 
 function HorizontalScene({ step }: { step: number }) {
+  const rowServers = step === 0 ? [SERVER] : H_SERVERS;
+  const DB = { x: 1350, y: 480 };
   return (
     <div className="absolute inset-0">
       <SceneTitle eyebrow="Part 3 · Exam-Night Traffic" title="Instead: many ordinary servers." sub="This is horizontal scaling." />
-      {(step === 0 ? [SERVER] : H_SERVERS).map((s, i) => (
+      {rowServers.map((s, i) => (
         <Node key={i} x={s.x} y={s.y} type="server" label={step === 0 ? 'Server' : `Server ${i + 1}`} status="healthy" />
       ))}
-      <Node x={1350} y={480} type="database" label="Database" status="idle" />
+      <Node x={DB.x} y={DB.y} type="database" label="Database" status="idle" />
       <EdgeLayer>
-        {(step === 0 ? [SERVER] : H_SERVERS).map((s, i) => <Edge key={i} from={s} to={{ x: 1350, y: 480 }} muted />)}
+        {rowServers.map((s, i) => <Edge key={i} from={s} to={DB} muted />)}
       </EdgeLayer>
     </div>
   );
 }
 
 function LoadBalancerScene({ step }: { step: number }) {
-  const LB = { x: 620, y: 480 };
-  const servers = H_SERVERS.map((s) => ({ ...s, x: s.x + 260 }));
+  const LB = { x: 480, y: 480 };
+  const servers = [{ x: 960, y: 260 }, { x: 960, y: 480 }, { x: 960, y: 700 }];
+  const DB = { x: 1340, y: 480 };
   const delays = stagger(9, 0.12);
-  const userPts = grid(9, 220, 460, 3, 74);
+  const userPts = grid(9, 190, 460, 3, 68);
 
   return (
     <div className="absolute inset-0">
@@ -96,11 +99,11 @@ function LoadBalancerScene({ step }: { step: number }) {
           {userPts.map((u, i) => <MiniUser key={i} x={u.x} y={u.y} delay={i * 0.03} />)}
           <Node x={LB.x} y={LB.y} type="loadbalancer" label="Load Balancer" status="active" />
           {servers.map((s, i) => <Node key={i} x={s.x} y={s.y} type="server" label={`Server ${i + 1}`} status="healthy" />)}
-          <Node x={1600 - 120} y={480} type="database" label="Database" status="idle" />
+          <Node x={DB.x} y={DB.y} type="database" label="Database" status="idle" />
           <EdgeLayer>
             {userPts.map((u, i) => <Edge key={`u${i}`} from={u} to={LB} muted />)}
             {servers.map((s, i) => <Edge key={`s${i}`} from={LB} to={s} muted />)}
-            {servers.map((s, i) => <Edge key={`d${i}`} from={s} to={{ x: 1480, y: 480 }} muted />)}
+            {servers.map((s, i) => <Edge key={`d${i}`} from={s} to={DB} muted />)}
           </EdgeLayer>
         </>
       )}
@@ -115,7 +118,7 @@ function LoadBalancerScene({ step }: { step: number }) {
         </span>
       ))}
       {step >= 3 && (
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.4 } }} className="absolute font-body text-[18px]" style={{ left: 640, top: 700, color: 'var(--color-teal)' }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.4 } }} className="absolute font-body text-[18px]" style={{ left: 500, top: 780, color: 'var(--color-teal)' }}>
           The load balancer spreads requests evenly. No single server drowns.
         </motion.p>
       )}

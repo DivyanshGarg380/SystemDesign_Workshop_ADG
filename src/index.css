@@ -60,7 +60,11 @@ body {
     linear-gradient(var(--color-line-soft) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-line-soft) 1px, transparent 1px);
   background-size: 64px 64px;
-  background-position: center;
+  /* deliberately NOT centered: a centered 64px grid on a 900-tall canvas puts a
+     gridline at y=482, almost exactly on the y=480 row most diagram nodes sit on,
+     which reads as a spurious line cutting through every node. Anchoring to the
+     top-left keeps gridlines off that row entirely. */
+  background-position: 0 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
