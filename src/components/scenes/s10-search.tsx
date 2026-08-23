@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt } from '../stage';
+import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt, ChapterBreak } from '../stage';
 import type { SceneDef } from '../../lib/types';
 
 const USER = { x: 260, y: 480 };
@@ -48,6 +48,9 @@ function SearchIndexScene({ step }: { step: number }) {
 }
 
 export const section10Scenes: SceneDef[] = [
+  { id: 'chapter-search', title: 'Chapter: Large-Scale Search', steps: 1, Component: () => (
+    <ChapterBreak part="Part 11 · Optional" title="Large-Scale Search" hook="Finding one paper in a hundred thousand." />
+  ), optional: true, notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'scan-problem', title: 'A plain query doesn\u2019t scale for search', steps: 3, Component: ScanProblemScene, optional: true },
   { id: 'search-index', title: 'The search index', steps: 4, Component: SearchIndexScene, optional: true },
 ];

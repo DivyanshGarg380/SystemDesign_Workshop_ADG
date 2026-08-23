@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Node, Packet, EdgeLayer, Edge, SceneTitle, MiniUser, Prompt } from '../stage';
+import { Node, Packet, EdgeLayer, Edge, SceneTitle, MiniUser, Prompt, ChapterBreak } from '../stage';
 import { grid, stagger } from '../../lib/helpers';
 import type { SceneDef } from '../../lib/types';
 
@@ -127,6 +127,9 @@ function LoadBalancerScene({ step }: { step: number }) {
 }
 
 export const section2Scenes: SceneDef[] = [
+  { id: 'chapter-scaling', title: 'Chapter: Exam-Night Traffic', steps: 1, Component: () => (
+    <ChapterBreak part="Part 3" title="Exam-Night Traffic" hook="Scaling: what happens when everyone shows up at once." />
+  ), notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'exam-night-intro', title: 'Exam-night traffic', steps: 1, Component: IntroScene },
   { id: 'overload', title: 'One server floods', steps: 3, Component: OverloadScene, notes: 'Let the room shout guesses before advancing.' },
   { id: 'vertical', title: 'Vertical scaling', steps: 3, Component: VerticalScene },

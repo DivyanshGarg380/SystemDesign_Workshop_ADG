@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt } from '../stage';
+import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt, ChapterBreak } from '../stage';
 import type { SceneDef } from '../../lib/types';
 
 const USER = { x: 260, y: 480 };
@@ -98,6 +98,9 @@ function PubSubScene() {
 }
 
 export const section5Scenes: SceneDef[] = [
+  { id: 'chapter-queues', title: 'Chapter: Async Work & Queues', steps: 1, Component: () => (
+    <ChapterBreak part="Part 6" title="Async Work & Queues" hook="Some work is too slow to make anyone wait for." />
+  ), notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'sync-problem', title: 'Synchronous work blocks', steps: 3, Component: SyncProblemScene },
   { id: 'queue-intro', title: 'The queue', steps: 3, Component: QueueIntroScene, notes: 'Core concept.' },
   { id: 'workers', title: 'Workers drain the queue', steps: 3, Component: WorkersScene },

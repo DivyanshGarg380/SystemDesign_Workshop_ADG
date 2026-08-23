@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt } from '../stage';
+import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt, ChapterBreak } from '../stage';
 import type { SceneDef } from '../../lib/types';
 
 const LB = { x: 480, y: 480 };
@@ -67,6 +67,9 @@ function RedundancyScene() {
 }
 
 export const section9Scenes: SceneDef[] = [
+  { id: 'chapter-failover', title: 'Chapter: Something Fails', steps: 1, Component: () => (
+    <ChapterBreak part="Part 10 · Optional" title="Something Fails" hook="Every system eventually has a bad night." />
+  ), optional: true, notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'health-check', title: 'Health checks', steps: 3, Component: HealthCheckScene, optional: true },
   { id: 'failover', title: 'Failover', steps: 3, Component: FailoverScene, optional: true, notes: 'Great room-participation moment even if trimmed elsewhere.' },
   { id: 'redundancy', title: 'Redundancy & backups', steps: 1, Component: RedundancyScene, optional: true },

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ScrollText, Gauge, Radio } from 'lucide-react';
-import { Node, Packet, EdgeLayer, Edge, SceneTitle } from '../stage';
+import { Node, Packet, EdgeLayer, Edge, SceneTitle, ChapterBreak } from '../stage';
 import type { SceneDef } from '../../lib/types';
 
 const USER = { x: 190, y: 480 };
@@ -71,6 +71,9 @@ function BreakdownScene({ step }: { step: number }) {
 }
 
 export const section11Scenes: SceneDef[] = [
+  { id: 'chapter-observability', title: 'Chapter: Knowing What\u2019s Broken', steps: 1, Component: () => (
+    <ChapterBreak part="Part 12 · Optional" title="Knowing What's Broken" hook="When something goes wrong, how do you even know?" />
+  ), optional: true, notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'trace', title: 'A request leaves a trail', steps: 2, Component: TraceScene, optional: true },
   { id: 'breakdown', title: 'Logs, metrics, tracing', steps: 3, Component: BreakdownScene, optional: true },
 ];

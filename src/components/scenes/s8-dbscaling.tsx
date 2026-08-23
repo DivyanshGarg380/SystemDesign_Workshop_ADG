@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt } from '../stage';
+import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt, ChapterBreak } from '../stage';
 import { stagger } from '../../lib/helpers';
 import type { SceneDef } from '../../lib/types';
 
@@ -69,6 +69,9 @@ function ShardingScene({ step }: { step: number }) {
 }
 
 export const section8Scenes: SceneDef[] = [
+  { id: 'chapter-dbscaling', title: 'Chapter: Database Under Strain', steps: 1, Component: () => (
+    <ChapterBreak part="Part 9 · Optional" title="Database Under Strain" hook="Caching bought time. The database still has limits." />
+  ), optional: true, notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'db-strain', title: 'One database, real strain', steps: 3, Component: DbStrainScene, optional: true },
   { id: 'read-replicas', title: 'Read replicas', steps: 3, Component: ReadReplicasScene, optional: true },
   { id: 'sharding', title: 'Sharding, briefly', steps: 2, Component: ShardingScene, optional: true },

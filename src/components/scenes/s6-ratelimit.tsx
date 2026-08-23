@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt } from '../stage';
+import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt, ChapterBreak } from '../stage';
 import { stagger } from '../../lib/helpers';
 import type { SceneDef } from '../../lib/types';
 
@@ -89,6 +89,9 @@ function AiQueueCacheScene({ step }: { step: number }) {
 }
 
 export const section6Scenes: SceneDef[] = [
+  { id: 'chapter-ratelimit', title: 'Chapter: AI Requests & Rate Limiting', steps: 1, Component: () => (
+    <ChapterBreak part="Part 7" title="AI Requests & Rate Limiting" hook="When a feature is expensive, fairness needs enforcing." />
+  ), notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'ai-problem', title: 'One user, 500 AI requests', steps: 3, Component: AiProblemScene },
   { id: 'rate-limit', title: 'Rate limiting', steps: 3, Component: RateLimitScene, notes: 'Core concept.' },
   { id: 'ai-queue-cache', title: 'Queue, worker, cache: together', steps: 5, Component: AiQueueCacheScene, notes: 'Nice moment to show concepts composing.' },

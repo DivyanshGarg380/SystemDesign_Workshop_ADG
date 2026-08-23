@@ -77,10 +77,10 @@ function CreditsScene() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="rounded-[32px] p-10 flex items-center justify-center"
+          className="rounded-[40px] p-14 flex items-center justify-center"
           style={{ background: '#0b0b0d', boxShadow: '0 30px 70px -20px rgba(20,24,29,0.35), 0 0 0 1px var(--color-line-soft)' }}
         >
-          <img src="/adg-logo.png" alt="Apple Developers Group, Manipal" style={{ width: 340, height: 'auto', display: 'block' }} />
+          <img src="/adg-logo.png" alt="Apple Developers Group, Manipal" style={{ width: 650, height: 'auto', display: 'block' }} />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 10 }}

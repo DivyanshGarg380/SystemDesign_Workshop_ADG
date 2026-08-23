@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Node, Packet, EdgeLayer, Edge, SceneTitle, MiniUser, Prompt } from '../stage';
+import { Node, Packet, EdgeLayer, Edge, SceneTitle, MiniUser, Prompt, ChapterBreak } from '../stage';
 import { grid, stagger } from '../../lib/helpers';
 import type { SceneDef } from '../../lib/types';
 
@@ -86,6 +86,9 @@ function CacheHitScene({ step }: { step: number }) {
 }
 
 export const section3Scenes: SceneDef[] = [
+  { id: 'chapter-caching', title: 'Chapter: Caching', steps: 1, Component: () => (
+    <ChapterBreak part="Part 4" title="Caching" hook="Why answering the same question a thousand times is wasteful." />
+  ), notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'repeated-requests', title: 'Repeated requests', steps: 3, Component: RepeatedScene },
   { id: 'cache-miss', title: 'Cache miss', steps: 6, Component: CacheMissScene, notes: 'Walk each hop slowly the first time.' },
   { id: 'cache-hit', title: 'Cache hit', steps: 4, Component: CacheHitScene, notes: 'Contrast the path length against the miss scene.' },

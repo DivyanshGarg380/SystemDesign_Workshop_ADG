@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { FileText } from 'lucide-react';
-import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt } from '../stage';
+import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt, ChapterBreak } from '../stage';
 import type { SceneDef } from '../../lib/types';
 
 const USER = { x: 260, y: 500 };
@@ -92,6 +92,9 @@ function CdnEdgeScene({ step }: { step: number }) {
 }
 
 export const section4Scenes: SceneDef[] = [
+  { id: 'chapter-cdn', title: 'Chapter: Large Files & CDN', steps: 1, Component: () => (
+    <ChapterBreak part="Part 5" title="Large Files & CDN" hook="Not everything should live on the same server." />
+  ), notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'large-file-problem', title: 'Large files strain the app server', steps: 3, Component: LargeFileProblemScene },
   { id: 'object-storage', title: 'Object storage', steps: 3, Component: ObjectStorageScene },
   { id: 'distant-origin', title: 'A distant origin is still slow', steps: 3, Component: DistantOriginScene },

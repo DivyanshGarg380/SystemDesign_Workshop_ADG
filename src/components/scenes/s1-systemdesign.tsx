@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { FileText, Search, Users } from 'lucide-react';
-import { Node, Packet, EdgeLayer, Edge, SceneTitle, MiniUser } from '../stage';
+import { Search, Sparkles, Star } from 'lucide-react';
+import { Node, Packet, EdgeLayer, Edge, SceneTitle, MiniUser, ChapterBreak } from '../stage';
 import { grid } from '../../lib/helpers';
 import type { SceneDef } from '../../lib/types';
 
@@ -72,18 +72,20 @@ const RECAP_DB = { x: 1500, y: 460 };
 
 /** Bridges "meet LabXam by name" into "here's what it actually does" before the
  * story starts stress-testing it, so the exam-night scaling problem doesn't
- * land on an audience that never saw the product itself. */
+ * land on an audience that never saw the product itself. Grounded in the real
+ * LabXam README: semester/subject/year/evaluation browsing, AI-generated
+ * solutions with a cache, and real usage numbers. */
 function MeetLabXamScene({ step }: { step: number }) {
   const features = [
-    { Icon: FileText, t: 'Past lab exam papers', d: 'Organised by subject and by year' },
-    { Icon: Search, t: 'Search across the archive', d: 'Find every past paper that touched a topic' },
-    { Icon: Users, t: 'Built for MIT Manipal students', d: 'Busiest the night before every lab exam' },
+    { Icon: Search, t: 'Browse by semester, subject, year, evaluation', d: 'No more digging through WhatsApp groups and shared drives' },
+    { Icon: Sparkles, t: 'AI-generated solutions', d: 'Structured explanations, cached so the same question is never re-generated' },
+    { Icon: Star, t: 'Actually used, actually rated', d: '4.5/5 from 67+ students, 7,000+ visits during peak exam periods' },
   ];
   const shown = Math.min(step + 1, features.length);
   return (
     <div className="absolute inset-0">
       <SceneTitle eyebrow="Part 2 · Enter LabXam" title="Here's what LabXam actually does." />
-      <div className="absolute flex flex-col gap-6" style={{ left: 120, top: 260, width: 720 }}>
+      <div className="absolute flex flex-col gap-6" style={{ left: 120, top: 260, width: 760 }}>
         {features.slice(0, shown).map(({ Icon, t, d }) => (
           <motion.div
             key={t}
@@ -104,8 +106,8 @@ function MeetLabXamScene({ step }: { step: number }) {
       </div>
       {step >= 3 && (
         <>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute font-mono text-[13px] uppercase tracking-wide" style={{ left: 1230, top: 300, color: 'var(--color-ink-600)' }}>
-            today, behind the scenes
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute font-mono text-[13px] uppercase tracking-wide max-w-[280px]" style={{ left: 1220, top: 280, color: 'var(--color-ink-600)' }}>
+            for tonight's story, let's picture the simplest possible version
           </motion.div>
           <Node x={RECAP_SERVER.x} y={RECAP_SERVER.y} type="server" label="Server" status="healthy" size={78} />
           <Node x={RECAP_DB.x} y={RECAP_DB.y} type="database" label="Database" status="healthy" size={78} />
@@ -117,6 +119,9 @@ function MeetLabXamScene({ step }: { step: number }) {
 }
 
 export const section1Scenes: SceneDef[] = [
+  { id: 'chapter-sysdesign', title: 'Chapter: What Is System Design?', steps: 1, Component: () => (
+    <ChapterBreak part="Part 2" title="What Is System Design?" hook="Not a fixed blueprint. A series of decisions made as problems show up." />
+  ), notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'simple-app', title: 'One server, one database', steps: 2, Component: SimpleAppScene },
   { id: 'principle', title: 'The core principle', steps: 1, Component: PrincipleScene, notes: 'Let this land. Slow down here.' },
   { id: 'transition', title: 'Enter LabXam', steps: 1, Component: TransitionScene, notes: 'Be explicit: this is a teaching fiction, not real LabXam architecture.' },

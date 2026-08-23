@@ -7,3 +7,4 @@ export { Edge, EdgeLayer } from './Edge';
 export { default as Prompt } from './Prompt';
 export { default as SceneTitle } from './SceneTitle';
 export { default as MiniUser } from './MiniUser';
+export { default as ChapterBreak } from './ChapterBreak';

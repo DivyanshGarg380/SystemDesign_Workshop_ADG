@@ -1,4 +1,4 @@
-import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt } from '../stage';
+import { Node, Packet, EdgeLayer, Edge, SceneTitle, Prompt, ChapterBreak } from '../stage';
 import type { SceneDef } from '../../lib/types';
 
 function LatencyScene({ step }: { step: number }) {
@@ -42,6 +42,9 @@ function GeoDistScene({ step }: { step: number }) {
 }
 
 export const section7Scenes: SceneDef[] = [
+  { id: 'chapter-geo', title: 'Chapter: Growing Beyond Manipal', steps: 1, Component: () => (
+    <ChapterBreak part="Part 8 · Optional" title="Growing Beyond Manipal" hook="What happens when LabXam's users aren't all nearby." />
+  ), optional: true, notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'latency', title: 'Distance costs time', steps: 3, Component: LatencyScene, optional: true },
   { id: 'geo-distribution', title: 'Regional points of presence', steps: 2, Component: GeoDistScene, optional: true },
 ];
