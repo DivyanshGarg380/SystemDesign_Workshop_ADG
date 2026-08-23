@@ -14,9 +14,9 @@ function ScanProblemScene({ step }: { step: number }) {
       <Node x={SERVER.x} y={SERVER.y} type="server" label="Server" status={step >= 1 ? 'active' : 'idle'} />
       <Node x={DB.x} y={DB.y} type="database" label="Database" sublabel="700k rows" status={step >= 1 ? 'overloaded' : 'idle'} />
       <EdgeLayer><Edge from={SERVER} to={DB} muted /></EdgeLayer>
-      {step >= 1 && <Packet from={USER} to={SERVER} label="search: pointer arithmetic" variant="request" duration={0.7} />}
+      {step >= 1 && <Packet from={USER} to={SERVER} label="search: pointer arithmetic" variant="request" duration={1.2} />}
       {step >= 1 && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.8 } }} className="absolute font-mono text-[14px]" style={{ left: 970, top: 590, color: 'var(--color-red)', width: 280 }}>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.4 } }} className="absolute font-mono text-[14px]" style={{ left: 970, top: 590, color: 'var(--color-red)', width: 280 }}>
           scanning every row, checking every word…
         </motion.div>
       )}
@@ -39,10 +39,10 @@ function SearchIndexScene({ step }: { step: number }) {
         <Edge from={DB} to={{ x: INDEX.x, y: 340 }} muted dashed />
         <Edge from={SERVER} to={{ x: INDEX.x, y: 340 }} muted />
       </EdgeLayer>
-      {step >= 1 && <Packet from={DB} to={{ x: INDEX.x, y: 340 }} label="keep in sync" variant="data" duration={0.7} />}
-      {step >= 2 && <Packet from={USER} to={SERVER} label="search: pointer arithmetic" variant="request" duration={0.6} />}
-      {step >= 2 && <Packet from={SERVER} to={{ x: INDEX.x, y: 340 }} label="search" variant="request" duration={0.6} delay={0.15} />}
-      {step >= 3 && <Packet from={{ x: INDEX.x, y: 340 }} to={USER} label="47 matches, instantly" variant="response" duration={0.9} />}
+      {step >= 1 && <Packet from={DB} to={{ x: INDEX.x, y: 340 }} label="keep in sync" variant="data" duration={1.2} />}
+      {step >= 2 && <Packet from={USER} to={SERVER} label="search: pointer arithmetic" variant="request" duration={1.1} />}
+      {step >= 2 && <Packet from={SERVER} to={{ x: INDEX.x, y: 340 }} label="search" variant="request" duration={1.1} delay={0.4} />}
+      {step >= 3 && <Packet from={{ x: INDEX.x, y: 340 }} to={USER} label="47 matches, instantly" variant="response" duration={1.3} />}
     </div>
   );
 }

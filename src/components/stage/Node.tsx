@@ -71,15 +71,34 @@ export default function Node({ x, y, type, label, sublabel, status = 'idle', siz
       transition={{ type: 'tween', duration: 1, ease: [0.22, 1, 0.36, 1], delay }}
     >
       <motion.div
+        key={failed ? 'failed' : 'ok'}
         className="relative flex items-center justify-center rounded-2xl"
         style={{ width: scaledSize, height: scaledSize, background: style.bg, border: `2.5px solid ${style.border}`, boxShadow: '0 1px 3px rgba(20,24,29,0.08)' }}
-        animate={{
+        initial={failed ? {
+          opacity: 1, x: 0, filter: 'grayscale(0)',
+          boxShadow: '0 0 0 1px var(--color-teal), 0 8px 20px -10px var(--color-teal), 0 1px 3px rgba(20,24,29,0.08)',
+        } : false}
+        animate={failed ? {
+          x: [0, -10, 10, -8, 8, -4, 4, 0],
+          boxShadow: [
+            '0 0 0 1.5px var(--color-red), 0 0 34px -2px var(--color-red), 0 1px 3px rgba(20,24,29,0.08)',
+            '0 0 0 1.5px var(--color-red), 0 0 34px -2px var(--color-red), 0 1px 3px rgba(20,24,29,0.08)',
+            '0 1px 3px rgba(20,24,29,0.08)',
+          ],
+          opacity: [1, 1, 0.45],
+          filter: ['grayscale(0)', 'grayscale(0.25)', 'grayscale(0.6)'],
+        } : {
           boxShadow: style.glow === 'none' ? '0 1px 3px rgba(20,24,29,0.08)' : `${style.glow}, 0 1px 3px rgba(20,24,29,0.08)`,
-          opacity: failed ? 0.45 : 1,
-          filter: failed ? 'grayscale(0.6)' : 'grayscale(0)',
+          opacity: 1,
+          filter: 'grayscale(0)',
           scale: status === 'overloaded' ? [1, 1.035, 1] : 1,
         }}
-        transition={status === 'overloaded'
+        transition={failed ? {
+          x: { duration: 0.65, ease: 'easeInOut' },
+          boxShadow: { duration: 1.3, times: [0, 0.5, 1], ease: 'easeInOut' },
+          opacity: { duration: 1.3, times: [0, 0.5, 1], ease: 'easeInOut' },
+          filter: { duration: 1.3, times: [0, 0.5, 1], ease: 'easeInOut' },
+        } : status === 'overloaded'
           ? { scale: { repeat: Infinity, duration: 1.5, ease: 'easeInOut' }, default: { duration: 0.6 } }
           : { duration: 0.6 }}
       >
@@ -88,7 +107,7 @@ export default function Node({ x, y, type, label, sublabel, status = 'idle', siz
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.45, delay: 0.75 }}
             className="absolute -top-3 -right-3 rounded-full bg-[var(--color-void)]"
           >
             <XCircle size={26} color="var(--color-red)" strokeWidth={2} />

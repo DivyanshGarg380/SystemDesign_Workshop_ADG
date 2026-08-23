@@ -24,12 +24,12 @@ function TraceScene({ step }: { step: number }) {
         <Edge from={SERVER} to={CACHE} muted />
         <Edge from={SERVER} to={DB} muted />
       </EdgeLayer>
-      {step >= 1 && <Packet from={USER} to={LB} variant="request" duration={0.4} small />}
-      {step >= 1 && <Packet from={LB} to={SERVER} variant="request" duration={0.4} delay={0.35} small />}
-      {step >= 1 && <Packet from={SERVER} to={CACHE} variant="request" duration={0.4} delay={0.7} small />}
-      {step >= 1 && <Packet from={CACHE} to={SERVER} label="miss" variant="blocked" duration={0.3} delay={1.05} small />}
-      {step >= 1 && <Packet from={SERVER} to={DB} variant="request" duration={0.4} delay={1.35} small />}
-      {step >= 1 && <Packet from={DB} to={USER} label="finally, a response" variant="response" duration={0.9} delay={1.7} />}
+      {step === 1 && <Packet from={USER} to={LB} variant="request" duration={1} small />}
+      {step === 2 && <Packet from={LB} to={SERVER} variant="request" duration={1} small />}
+      {step === 3 && <Packet from={SERVER} to={CACHE} variant="request" duration={1} small />}
+      {step === 4 && <Packet from={CACHE} to={SERVER} label="miss" variant="blocked" duration={0.7} small />}
+      {step === 5 && <Packet from={SERVER} to={DB} variant="request" duration={1} small />}
+      {step === 6 && <Packet from={DB} to={USER} label="finally, a response" variant="response" duration={1.3} />}
     </div>
   );
 }
@@ -74,6 +74,6 @@ export const section11Scenes: SceneDef[] = [
   { id: 'chapter-observability', title: 'Chapter: Knowing What\u2019s Broken', steps: 1, Component: () => (
     <ChapterBreak part="Part 12 · Optional" title="Knowing What's Broken" hook="When something goes wrong, how do you even know?" />
   ), optional: true, notes: 'Pause here. Let the room reset before diving in.' },
-  { id: 'trace', title: 'A request leaves a trail', steps: 2, Component: TraceScene, optional: true },
+  { id: 'trace', title: 'A request leaves a trail', steps: 7, Component: TraceScene, optional: true, notes: 'Each hop is its own click now — pace it with your narration.' },
   { id: 'breakdown', title: 'Logs, metrics, tracing', steps: 3, Component: BreakdownScene, optional: true },
 ];
