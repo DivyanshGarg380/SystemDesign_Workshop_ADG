@@ -11,12 +11,15 @@ function TitleScene() {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center">
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="text-center">
-        <div className="font-mono text-[15px] tracking-[0.2em] uppercase mb-4" style={{ color: 'var(--color-amber)' }}>MIT Manipal &middot; System Design Workshop</div>
+        <div className="font-mono text-[20px] tracking-[0.2em] uppercase mb-4" style={{ color: 'var(--color-amber)' }}>System Design Workshop</div>
         <h1 className="font-display font-semibold text-[64px] leading-tight" style={{ color: 'var(--color-ink-100)' }}>
           What actually happens<br />when you use an app?
         </h1>
-        <p className="font-body text-[20px] mt-6" style={{ color: 'var(--color-ink-400)' }}>
-          A live, visual story about how software grows up.
+        <p
+          className="font-body text-[20px] mt-6"
+          style={{ color: 'var(--color-ink-400)' }}
+        >
+          A live, visual story of how an app grows from one user to millions.
         </p>
       </motion.div>
     </div>
@@ -27,15 +30,30 @@ function TitleScene() {
  * it also works as a genuine welcome slide for the room. */
 function SpeakerCueScene({ step }: { step: number }) {
   const lines = [
-    { h: "Hi, I'm Divyansh.", s: 'Web Development Domain Lead, ADG Manipal.' },
-    { h: 'Tonight is one story.', s: 'How a simple app grows into a real system, one problem at a time.' },
-    { h: "It's interactive.", s: "I'll ask a question, you guess, then we reveal it together. Shout out answers." },
-    { h: 'No prior knowledge needed.', s: 'If you can use an app, you already understand more of this than you think.' },
+    {
+      h: "I'm Divyansh.",
+      s: "I lead Web Development at ADG Manipal.",
+    },
+
+    {
+      h: "Tonight, we're following one app.",
+      s: "It starts simple. Then users show up. Problems follow.",
+    },
+
+    {
+      h: "This isn't a lecture.",
+      s: "I'll ask. You guess. We'll figure out what happens next.",
+    },
+
+    {
+      h: "You don't need to know System Design.",
+      s: "Just know how to use an app. That's enough to start.",
+    },
   ];
   const shown = Math.min(step + 1, lines.length);
   return (
     <div className="absolute inset-0 flex flex-col justify-center px-[120px]">
-      <div className="font-mono text-[15px] tracking-[0.18em] uppercase mb-8" style={{ color: 'var(--color-amber)' }}>
+      <div className="font-mono text-[20px] tracking-[0.2em] uppercase mb-8" style={{ color: 'var(--color-amber)' }}>
         Welcome
       </div>
       <div className="flex flex-col gap-7">
@@ -51,8 +69,8 @@ function SpeakerCueScene({ step }: { step: number }) {
               {String(i + 1).padStart(2, '0')}
             </span>
             <div>
-              <div className="font-display font-semibold text-[30px]" style={{ color: 'var(--color-ink-100)' }}>{l.h}</div>
-              <div className="font-body text-[18px] mt-1" style={{ color: 'var(--color-ink-400)' }}>{l.s}</div>
+              <div className="font-display font-semibold text-[40px]" style={{ color: 'var(--color-ink-100)' }}>{l.h}</div>
+              <div className="font-body text-[20px] mt-1" style={{ color: 'var(--color-ink-400)' }}>{l.s}</div>
             </div>
           </motion.div>
         ))}
@@ -73,13 +91,13 @@ function AgendaScene({ step }: { step: number }) {
     'AI requests and rate limiting',
     'Extras if time allows: geo-distribution, replicas, failover, search, observability',
   ];
-  const shown = Math.min(step + 3, items.length);
+  const shown = Math.min(step + 1, items.length);
   return (
     <div className="absolute inset-0 flex flex-col justify-center px-[120px]">
-      <div className="font-mono text-[15px] tracking-[0.18em] uppercase mb-6" style={{ color: 'var(--color-amber)' }}>
+      <div className="font-mono text-[20px] tracking-[0.2em] uppercase mb-6" style={{ color: 'var(--color-amber)' }}>
         Tonight's route
       </div>
-      <h1 className="font-display font-semibold text-[38px] mb-8" style={{ color: 'var(--color-ink-100)' }}>
+      <h1 className="font-display font-semibold text-[40px] mb-8" style={{ color: 'var(--color-ink-100)' }}>
         We'll build one system, one problem at a time.
       </h1>
       <div className="flex flex-col gap-3.5">
@@ -89,10 +107,10 @@ function AgendaScene({ step }: { step: number }) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="flex items-center gap-4 font-body text-[19px]"
+            className="flex items-center gap-4 font-body text-[20px]"
             style={{ color: i === items.length - 1 ? 'var(--color-ink-600)' : 'var(--color-ink-300)' }}
           >
-            <span className="font-mono text-[13px] w-6" style={{ color: 'var(--color-teal)' }}>{String(i + 1).padStart(2, '0')}</span>
+            <span className="font-mono text-[20px] w-6" style={{ color: 'var(--color-teal)' }}>{String(i + 1).padStart(2, '0')}</span>
             {t}
           </motion.div>
         ))}
@@ -118,7 +136,7 @@ function ClickScene({ step }: { step: number }) {
       {step >= 1 && (
         <motion.p
           initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.3 } }}
-          className="absolute font-body text-[19px]" style={{ left: 700, top: 560, color: 'var(--color-ink-400)', width: 420 }}
+          className="absolute font-body text-[20px]" style={{ left: 700, top: 560, color: 'var(--color-ink-400)', width: 420 }}
         >
           Somewhere, a message just left your phone. Where does it go?
         </motion.p>
@@ -173,7 +191,7 @@ function URLScene({ step }: { step: number }) {
         </>
       )}
       {step === 3 && (
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.3 } }} className="absolute font-body text-[17px] max-w-[420px]" style={{ left: 620, top: 700, color: 'var(--color-ink-400)' }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.3 } }} className="absolute font-body text-[20px] max-w-[420px]" style={{ left: 620, top: 700, color: 'var(--color-ink-400)' }}>
           An IP address is just a machine's actual address on the network. DNS usually only runs once, then gets remembered for a while.
         </motion.p>
       )}
@@ -187,7 +205,7 @@ function ClientServerScene({ step }: { step: number }) {
       <SceneTitle eyebrow="Part 1 · Web Basics" title="Either way, two machines are involved." sub="Your phone or laptop is a client. Somewhere else, a server is waiting." />
       <Node x={USER.x} y={USER.y} type="user" label="You" sublabel="client" status="active" />
       {step >= 1 && (
-        <Node x={SERVER.x} y={SERVER.y} type="server" label="Server" sublabel="always on, waiting" status="idle" />
+        <Node x={SERVER.x} y={SERVER.y} type="server" label="Server" sublabel="always on waiting" status="idle" />
       )}
       {step >= 1 && (
         <EdgeLayer>
@@ -208,13 +226,13 @@ function RequestResponseScene({ step }: { step: number }) {
         <Edge from={USER} to={SERVER} muted />
       </EdgeLayer>
       {step === 0 && <Packet from={USER} to={SERVER} label="GET /questions" variant="request" />}
-      {step >= 1 && <Packet from={USER} to={SERVER} label="GET /questions" variant="request" duration={0.01} />}
+      {/* {step >= 1 && <Packet from={USER} to={SERVER} label="GET /questions" variant="request" duration={0.01} />} */}
       {step === 1 && (
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.3 } }} className="absolute font-body text-[18px]" style={{ left: 640, top: 640, color: 'var(--color-ink-400)' }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.3 } }} className="absolute font-body text-[20px]" style={{ left: 640, top: 640, color: 'var(--color-ink-400)' }}>
           The server reads your request and decides what to do.
         </motion.p>
       )}
-      {step >= 2 && <Packet from={SERVER} to={USER} label="200 OK, here's your data" variant="response" delay={0.15} />}
+      {step >= 2 && <Packet from={SERVER} to={USER} label="200 OK, here's your data" variant="response" delay={0.20} />}
     </div>
   );
 }
@@ -235,7 +253,7 @@ function DatabaseScene({ step }: { step: number }) {
       {step >= 2 && <Packet key={`p2-${step === 2}`} from={DB} to={SERVER} label="rows" variant="data" duration={step === 2 ? 1 : 0.01} />}
       {step >= 3 && <Packet from={SERVER} to={USER} label="200 OK" variant="response" duration={1} />}
       {step === 3 && (
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.8 } }} className="absolute font-display font-semibold text-[20px]" style={{ left: 620, top: 700, color: 'var(--color-teal)' }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.8 } }} className="absolute font-display font-semibold text-[25px]" style={{ left: 620, top: 700, color: 'var(--color-teal)' }}>
           Client to server, server to database, database to server, server to client.
         </motion.p>
       )}
@@ -258,7 +276,7 @@ function ApiStaticDynamicScene({ step }: { step: number }) {
           <div className="font-mono text-[26px] px-8 py-5 rounded-xl" style={{ background: 'var(--color-panel-2)', border: '1px solid var(--color-line)', color: 'var(--color-amber)' }}>
             GET&nbsp;&nbsp;<span style={{ color: 'var(--color-ink-100)' }}>/questions</span>
           </div>
-          <div className="flex gap-8 mt-6 font-mono text-[15px]" style={{ color: 'var(--color-ink-400)' }}>
+          <div className="flex gap-8 mt-6 font-mono text-[20px]" style={{ color: 'var(--color-ink-400)' }}>
             <span><b style={{ color: 'var(--color-teal)' }}>method</b>: what to do</span>
             <span><b style={{ color: 'var(--color-teal)' }}>path</b>: what resource</span>
           </div>
@@ -267,9 +285,9 @@ function ApiStaticDynamicScene({ step }: { step: number }) {
       {step === 1 && (
         <div className="absolute inset-0">
           <Node x={520} y={520} type="server" label="Server" sublabel="static file" status="idle" />
-          <div className="absolute font-mono text-[15px]" style={{ left: 400, top: 660, color: 'var(--color-ink-400)', width: 280 }}>logo.png: same bytes, every time</div>
+          <div className="absolute font-mono text-[18px]" style={{ left: 400, top: 660, color: 'var(--color-ink-400)', width: 280 }}>favicon.png: same bytes, every time</div>
           <Node x={1080} y={520} type="database" label="Database" sublabel="dynamic data" status="active" />
-          <div className="absolute font-mono text-[15px]" style={{ left: 960, top: 660, color: 'var(--color-ink-400)', width: 280 }}>your questions: different every request</div>
+          <div className="absolute font-mono text-[18px]" style={{ left: 960, top: 660, color: 'var(--color-ink-400)', width: 280 }}>your questions: different every request</div>
         </div>
       )}
     </div>
@@ -279,7 +297,7 @@ function ApiStaticDynamicScene({ step }: { step: number }) {
 export const section0Scenes: SceneDef[] = [
   { id: 'title', title: 'Title', steps: 1, Component: TitleScene, notes: 'Welcome the room. No jargon yet.' },
   { id: 'speaker-cue', title: 'Welcome & introduction', steps: 4, Component: SpeakerCueScene, notes: 'Your cue card. Read it straight off the screen if you go blank.' },
-  { id: 'agenda', title: "Tonight's route", steps: 5, Component: AgendaScene, notes: 'Sets expectations. Mention the optional sections can be trimmed live.' },
+  { id: 'agenda', title: "Tonight's route", steps: 7, Component: AgendaScene, notes: 'Sets expectations. Mention the optional sections can be trimmed live.' },
   { id: 'click', title: 'You tap a button', steps: 2, Component: ClickScene },
   { id: 'url-dns', title: 'Or you type a URL: DNS', steps: 4, Component: URLScene, notes: 'The bit that was missing before: DNS resolution.' },
   { id: 'client-server', title: 'Client and server', steps: 2, Component: ClientServerScene },
