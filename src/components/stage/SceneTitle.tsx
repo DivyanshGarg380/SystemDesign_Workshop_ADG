@@ -10,7 +10,7 @@ export default function SceneTitle({ eyebrow, title, sub }: { eyebrow?: string; 
       className="absolute left-[72px] top-[52px] max-w-[900px]"
     >
       {eyebrow && (
-        <div className="font-mono text-[16px] tracking-[0.14em] uppercase mb-2" style={{ color: 'var(--color-amber)' }}>
+        <div className="font-mono text-[25px] tracking-[0.14em] uppercase mb-2" style={{ color: 'var(--color-amber)' }}>
           {eyebrow}
         </div>
       )}

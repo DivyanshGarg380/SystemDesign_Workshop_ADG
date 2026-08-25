@@ -8,15 +8,82 @@ const DB = { x: 1350, y: 480 };
 const USERS = grid(14, 320, 460, 4, 78);
 
 function IntroScene({ step }: { step: number }) {
+  const moments = [
+    {
+      word: 'ENDSEM',
+      sub: 'Tomorrow morning',
+      color: 'var(--color-amber)',
+    },
+    {
+      word: '40 MARKS',
+      sub: 'You really need those marks',
+      color: 'var(--color-teal)',
+    },
+    {
+      word: 'TENSION',
+      sub: 'Everyone is looking for PYQs',
+      color: 'var(--color-ink-100)',
+    },
+  ];
+
+  const current = moments[Math.min(step, moments.length - 1)];
+
   return (
-    <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 3 · Exam-Night Traffic" title="It's 11 PM. The lab exam is tomorrow morning." sub="Every student on campus opens LabXam at once." />
-      <div className="absolute" style={{ left: 620, top: 420 }}>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: step >= 0 ? 1 : 0 }} className="font-mono text-[120px] font-bold" style={{ color: 'var(--color-amber)' }}>
-          75%
-        </motion.div>
-        <div className="font-body text-[17px] -mt-2" style={{ color: 'var(--color-ink-400)' }}>attendance rule. Nobody skips revising tonight.</div>
+    <div className="absolute inset-0 flex flex-col items-center justify-center">
+      {/* Small context */}
+      <div
+        className="absolute top-[60px] left-[64px] font-mono text-[25px] tracking-[0.2em] uppercase"
+        style={{ color: 'var(--color-amber)' }}
+      >
+        Part 3 · Exam-Night Traffic
       </div>
+
+      {/* Main sequence */}
+      <motion.div
+        key={current.word}
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55 }}
+        className="text-center"
+      >
+        <div
+          className="font-display font-semibold text-[112px] leading-none tracking-tight"
+          style={{ color: current.color }}
+        >
+          {current.word}
+        </div>
+
+        <p
+          className="font-body text-[24px] mt-7"
+          style={{ color: 'var(--color-ink-400)' }}
+        >
+          {current.sub}
+        </p>
+      </motion.div>
+
+      {/* Final reveal */}
+      {step >= 3 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="absolute bottom-[110px] text-center"
+        >
+          <div
+            className="font-display font-semibold text-[36px]"
+            style={{ color: 'var(--color-ink-100)' }}
+          >
+            And suddenly, everyone needs LabXam
+          </div>
+
+          <p
+            className="font-body text-[20px] mt-3"
+            style={{ color: 'var(--color-ink-400)' }}
+          >
+            The traffic spike begins
+          </p>
+        </motion.div>
+      )}
     </div>
   );
 }
@@ -36,7 +103,7 @@ function OverloadScene({ step }: { step: number }) {
         <Packet key={i} from={u} to={SERVER} variant="request" small duration={0.8} delay={delays[i]} />
       ))}
       {step >= 1 && (
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.2 } }} className="absolute font-body text-[18px]" style={{ left: 760, top: 660, color: 'var(--color-red)' }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.2 } }} className="absolute font-body text-[20px]" style={{ left: 760, top: 660, color: 'var(--color-red)' }}>
           Requests pile up faster than the server can answer them.
         </motion.p>
       )}
@@ -54,7 +121,7 @@ function VerticalScene({ step }: { step: number }) {
       <Node x={DB.x} y={DB.y} type="database" label="Database" status="idle" />
       <EdgeLayer><Edge from={SERVER} to={DB} muted /></EdgeLayer>
       {step >= 2 && (
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="absolute font-body text-[19px] max-w-[560px]" style={{ left: 620, top: 690, color: 'var(--color-ink-400)' }}>
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="absolute font-body text-[20px] max-w-[560px]" style={{ left: 620, top: 690, color: 'var(--color-ink-400)' }}>
           It helps, for a while. But a single machine still has a ceiling,
           and if that one machine goes down, <b style={{ color: 'var(--color-red)' }}>everything</b> goes down with it.
         </motion.div>
@@ -118,7 +185,7 @@ function LoadBalancerScene({ step }: { step: number }) {
         </span>
       ))}
       {step >= 3 && (
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.4 } }} className="absolute font-body text-[18px]" style={{ left: 500, top: 780, color: 'var(--color-teal)' }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.4 } }} className="absolute font-body text-[20px]" style={{ left: 500, top: 780, color: 'var(--color-teal)' }}>
           The load balancer spreads requests evenly. No single server drowns.
         </motion.p>
       )}
@@ -130,7 +197,7 @@ export const section2Scenes: SceneDef[] = [
   { id: 'chapter-scaling', title: 'Chapter: Exam-Night Traffic', steps: 1, Component: () => (
     <ChapterBreak part="Part 3" title="Exam-Night Traffic" hook="Scaling: what happens when everyone shows up at once." />
   ), notes: 'Pause here. Let the room reset before diving in.' },
-  { id: 'exam-night-intro', title: 'Exam-night traffic', steps: 1, Component: IntroScene },
+  { id: 'exam-night-intro', title: 'Exam-night traffic', steps: 4, Component: IntroScene },
   { id: 'overload', title: 'One server floods', steps: 3, Component: OverloadScene, notes: 'Let the room shout guesses before advancing.' },
   { id: 'vertical', title: 'Vertical scaling', steps: 3, Component: VerticalScene },
   { id: 'horizontal', title: 'Horizontal scaling', steps: 2, Component: HorizontalScene },
