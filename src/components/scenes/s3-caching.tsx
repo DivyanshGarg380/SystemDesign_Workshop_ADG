@@ -13,7 +13,7 @@ function RepeatedScene({ step }: { step: number }) {
   const delays = stagger(8, 0.18);
   return (
     <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 3 · Repeated Requests" title='Every student asks for the same thing.' sub='"Show me last year\u2019s Data Structures lab exam."' />
+      <SceneTitle eyebrow="Part 3 · Repeated Requests" title='Every student asks for the same thing.' sub='"Show me last year\2026s Data Structures lab exam."' />
       {users.map((u, i) => <MiniUser key={i} x={u.x} y={u.y} delay={i * 0.04} />)}
       <Node x={SERVER.x} y={SERVER.y} type="server" label="Server" status={step >= 1 ? 'active' : 'idle'} />
       <Node x={DB.x} y={DB.y} type="database" label="Database" status={step >= 1 ? 'overloaded' : 'idle'} />
@@ -51,7 +51,7 @@ function CacheMissScene({ step }: { step: number }) {
       {step >= 4 && <Packet from={SERVER} to={CACHE} label="store" variant="data" duration={1} />}
       {step >= 5 && <Packet from={SERVER} to={USER} label="200 OK" variant="response" duration={1.1} />}
       {step === 5 && (
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.9 } }} className="absolute font-body text-[17px] max-w-[420px]" style={{ left: 850, top: 700, color: 'var(--color-ink-400)' }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.9 } }} className="absolute font-body text-[20px] max-w-[420px]" style={{ left: 850, top: 700, color: 'var(--color-ink-400)' }}>
           Slow, but next time, the cache already has the answer.
         </motion.p>
       )}
