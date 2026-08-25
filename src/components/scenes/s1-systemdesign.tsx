@@ -23,7 +23,7 @@ function SimpleAppScene({ step }: { step: number }) {
         <Packet key={i} from={u} to={SERVER} variant="request" small duration={0.7} delay={i * 0.08} />
       ))}
       {step >= 1 && (
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.9 } }} className="absolute font-body text-[18px]" style={{ left: 700, top: 700, color: 'var(--color-teal)' }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.9 } }} className="absolute font-body text-[20px]" style={{ left: 700, top: 700, color: 'var(--color-teal)' }}>
           Every request, handled comfortably. No problem yet.
         </motion.p>
       )}
@@ -35,11 +35,11 @@ function PrincipleScene() {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center">
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center max-w-[1100px]">
-        <div className="font-mono text-[15px] tracking-[0.14em] uppercase mb-5" style={{ color: 'var(--color-amber)' }}>The one idea behind everything today</div>
+        <div className="font-mono text-[20px] tracking-[0.14em] uppercase mb-5" style={{ color: 'var(--color-amber)' }}>The one idea behind everything today</div>
         <h1 className="font-display font-semibold text-[46px] leading-tight" style={{ color: 'var(--color-ink-100)' }}>
           Start simple.<br />Add complexity only when a <span style={{ color: 'var(--color-amber)' }}>real problem</span> demands it.
         </h1>
-        <p className="font-body text-[19px] mt-6" style={{ color: 'var(--color-ink-400)' }}>
+        <p className="font-body text-[20px] mt-6" style={{ color: 'var(--color-ink-400)' }}>
           System Design isn't about memorising architecture diagrams.<br />It's about understanding why each piece exists.
         </p>
       </motion.div>
@@ -49,18 +49,42 @@ function PrincipleScene() {
 
 function TransitionScene() {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center">
-      <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7 }} className="text-center">
-        <h1 className="font-display font-semibold text-[52px]" style={{ color: 'var(--color-ink-100)' }}>
+    <div className="absolute inset-0 flex items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="text-center"
+      >
+        {/* Setup */}
+        <p
+          className="font-display font-semibold text-[42px] mb-1"
+          style={{ color: 'var(--color-ink-100)' }}
+        >
           Let's build something closer to home.
-        </h1>
-        <p className="font-mono text-[20px] mt-6 tracking-wide" style={{ color: 'var(--color-teal)' }}>
-          LabXam: lab exam questions and PYQs, MIT Manipal
         </p>
-        <p className="font-body text-[15px] mt-8 max-w-[640px] mx-auto" style={{ color: 'var(--color-ink-600)' }}>
-          What follows is a hypothetical exercise: how a platform like LabXam
-          <i> could </i> evolve if usage kept growing far past where it is today.
-          It is not a description of LabXam's real production system.
+
+        {/* Hero */}
+        <h1
+          className="font-display font-semibold text-[88px] leading-none tracking-tight mt-5"
+          style={{ color: 'var(--color-teal)' }}
+        >
+          LabXam
+        </h1>
+
+        <p
+          className="font-body text-[22px] mt-5"
+          style={{ color: 'var(--color-ink-400)' }}
+        >
+          A simple platform for lab exam questions and PYQs of MIT Manipal
+        </p>
+
+        <p
+          className="font-body text-[20px] leading-relaxed mt-10 max-w-[580px] mx-auto"
+          style={{ color: 'var(--color-ink-600)' }}
+        >
+          We'll use LabXam as our starting point and follow the problems that
+          appear as more and more people start using it.
         </p>
       </motion.div>
     </div>
@@ -70,16 +94,15 @@ function TransitionScene() {
 const RECAP_SERVER = { x: 1280, y: 460 };
 const RECAP_DB = { x: 1500, y: 460 };
 
-/** Bridges "meet LabXam by name" into "here's what it actually does" before the
- * story starts stress-testing it, so the exam-night scaling problem doesn't
- * land on an audience that never saw the product itself. Grounded in the real
- * LabXam README: semester/subject/year/evaluation browsing, AI-generated
- * solutions with a cache, and real usage numbers. */
 function MeetLabXamScene({ step }: { step: number }) {
   const features = [
     { Icon: Search, t: 'Browse by semester, subject, year, evaluation', d: 'No more digging through WhatsApp groups and shared drives' },
-    { Icon: Sparkles, t: 'AI-generated solutions', d: 'Structured explanations, cached so the same question is never re-generated' },
-    { Icon: Star, t: 'Actually used, actually rated', d: '4.5/5 from 67+ students, 7,000+ visits during peak exam periods' },
+    {
+      Icon: Sparkles,
+      t: 'AI-generated solutions',
+      d: 'Generate solutions without leaving LabXam',
+    },
+    { Icon: Star, t: 'Actually used, actually rated', d: '4.5/5, 7K+ visits and 23K+ page views during peak exam periods' },
   ];
   const shown = Math.min(step + 1, features.length);
   return (
@@ -106,7 +129,7 @@ function MeetLabXamScene({ step }: { step: number }) {
       </div>
       {step >= 3 && (
         <>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute font-mono text-[13px] uppercase tracking-wide max-w-[280px]" style={{ left: 1220, top: 280, color: 'var(--color-ink-600)' }}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute font-mono text-[15px] uppercase tracking-wide max-w-[280px]" style={{ left: 1220, top: 280, color: 'var(--color-ink-600)' }}>
             for tonight's story, let's picture the simplest possible version
           </motion.div>
           <Node x={RECAP_SERVER.x} y={RECAP_SERVER.y} type="server" label="Server" status="healthy" size={78} />
