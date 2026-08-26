@@ -12,7 +12,7 @@ const DB = { x: 1000, y: 630 };
 function TraceScene({ step }: { step: number }) {
   return (
     <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 12 · Optional, Knowing What's Broken" title="One request, moving through many components." sub="It touches the balancer, the server, the cache, and the database. If it's slow, where do you even look?" />
+      <SceneTitle eyebrow="Part 12 · Knowing What's Broken" title="One request moving through many components" sub="It touches the balancer, the server, the cache and the database. If it's slow, where do you even look?" />
       <Node x={USER.x} y={USER.y} type="user" label="Student" status="idle" size={72} />
       <Node x={LB.x} y={LB.y} type="loadbalancer" label="LB" status="idle" size={72} />
       <Node x={SERVER.x} y={SERVER.y} type="server" label="Server" status="idle" size={72} />
@@ -36,31 +36,92 @@ function TraceScene({ step }: { step: number }) {
 
 function BreakdownScene({ step }: { step: number }) {
   const items = [
-    { key: 'logs', label: 'Logs', Icon: ScrollText, desc: '"cache miss for key exam:4 at 23:41:02": individual events, exact and detailed.' },
-    { key: 'metrics', label: 'Metrics', Icon: Gauge, desc: 'requests/sec, error rate, p99 latency: numbers, tracked over time.' },
-    { key: 'trace', label: 'Tracing', Icon: Radio, desc: 'the full path one request took, hop by hop, with timing for each.' },
+    {
+      key: 'logs',
+      label: 'Logs',
+      Icon: ScrollText,
+      desc: '"cache miss for key exam:4 at 23:41:02": individual events, exact and detailed.',
+    },
+    {
+      key: 'metrics',
+      label: 'Metrics',
+      Icon: Gauge,
+      desc: 'requests/sec, error rate, p99 latency: numbers, tracked over time.',
+    },
+    {
+      key: 'trace',
+      label: 'Tracing',
+      Icon: Radio,
+      desc: 'the full path one request took, hop by hop, with timing for each.',
+    },
   ] as const;
+
   return (
     <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 12 · Optional" title="Three different lenses on the same system." />
-      <div className="absolute left-[130px] top-[280px] flex gap-10">
+      <SceneTitle
+        eyebrow="Part 12 · Knowing What's Broken"
+        title="Three different lenses on the same system"
+      />
+
+      <div className="absolute left-[100px] top-[250px] flex gap-8">
         {items.map(({ key, label, Icon, desc }, i) => {
           const active = step >= i;
+
           return (
             <motion.div
               key={key}
               initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: active ? 1 : 0.35, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="flex flex-col items-start gap-5 w-[380px] rounded-2xl p-8"
-              style={{ background: 'var(--color-panel)', border: `1.5px solid ${active ? 'var(--color-teal)' : 'var(--color-line)'}`, boxShadow: '0 1px 3px rgba(20,24,29,0.06)' }}
+              animate={{
+                opacity: active ? 1 : 0.35,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.5,
+                delay: i * 0.12,
+              }}
+              className="flex flex-col items-start gap-6 w-[440px] min-h-[360px] rounded-2xl p-[38px]"
+              style={{
+                background: 'var(--color-panel)',
+                border: `1.5px solid ${
+                  active ? 'var(--color-teal)' : 'var(--color-line)'
+                }`,
+                boxShadow: '0 1px 3px rgba(20,24,29,0.06)',
+              }}
             >
-              <div className="w-[72px] h-[72px] rounded-2xl flex items-center justify-center shrink-0" style={{ background: 'var(--color-panel-2)', border: `2px solid ${active ? 'var(--color-teal)' : 'var(--color-line)'}` }}>
-                <Icon size={32} color={active ? 'var(--color-teal)' : 'var(--color-ink-400)'} strokeWidth={1.75} />
+              <div
+                className="w-[84px] h-[84px] rounded-2xl flex items-center justify-center shrink-0"
+                style={{
+                  background: 'var(--color-panel-2)',
+                  border: `2px solid ${
+                    active ? 'var(--color-teal)' : 'var(--color-line)'
+                  }`,
+                }}
+              >
+                <Icon
+                  size={38}
+                  color={
+                    active
+                      ? 'var(--color-teal)'
+                      : 'var(--color-ink-400)'
+                  }
+                  strokeWidth={1.75}
+                />
               </div>
+
               <div>
-                <div className="font-display font-semibold text-[22px]" style={{ color: 'var(--color-ink-100)' }}>{label}</div>
-                <p className="font-body text-[15.5px] mt-2 leading-relaxed" style={{ color: 'var(--color-ink-400)' }}>{desc}</p>
+                <div
+                  className="font-display font-semibold text-[26px]"
+                  style={{ color: 'var(--color-ink-100)' }}
+                >
+                  {label}
+                </div>
+
+                <p
+                  className="font-body text-[18px] mt-3 leading-relaxed"
+                  style={{ color: 'var(--color-ink-400)' }}
+                >
+                  {desc}
+                </p>
               </div>
             </motion.div>
           );
@@ -72,7 +133,7 @@ function BreakdownScene({ step }: { step: number }) {
 
 export const section11Scenes: SceneDef[] = [
   { id: 'chapter-observability', title: 'Chapter: Knowing What\u2019s Broken', steps: 1, Component: () => (
-    <ChapterBreak part="Part 12 · Optional" title="Knowing What's Broken" hook="When something goes wrong, how do you even know?" />
+    <ChapterBreak part="Part 12" title="Knowing What's Broken" hook="When something goes wrong, how do you even know?" />
   ), optional: true, notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'trace', title: 'A request leaves a trail', steps: 7, Component: TraceScene, optional: true, notes: 'Each hop is its own click now — pace it with your narration.' },
   { id: 'breakdown', title: 'Logs, metrics, tracing', steps: 3, Component: BreakdownScene, optional: true },
