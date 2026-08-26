@@ -4,37 +4,54 @@ import type { SceneDef } from '../../lib/types';
 const TAKEAWAYS = [
   'How a web request actually travels through an application',
   'Why servers and databases are kept separate',
-  'Why one server eventually stops being enough, and what a load balancer does',
+  'Why one server eventually stops being enough and what a load balancer does',
   'Why caching reduces load, and the difference between a hit and a miss',
   'Why large static files are served differently from dynamic data',
   'Why slow work gets handed to a queue instead of blocking the user',
   'Why rate limiting protects expensive resources',
-  'Why distance affects speed, and how a CDN helps',
-  'Why growing systems need replication, and eventually, sharding',
-  'Why systems need health checks, redundancy, and failover',
+  'Why distance affects speed and how a CDN helps',
+  'Why growing systems need replication and eventually, sharding',
+  'Why systems need health checks, redundancy and failover',
   'Why search at scale needs more than a database query',
-  'Why teams rely on logs, metrics, and tracing to know what\u2019s broken',
+  'Why teams rely on logs, metrics and tracing to know what is broken',
 ];
 
 function RecapScene({ step }: { step: number }) {
-  const shown = Math.min(step + 6, TAKEAWAYS.length);
+  const shown = Math.min(step + 1, TAKEAWAYS.length);
+
   return (
     <div className="absolute inset-0 px-[100px] py-[70px]">
-      <div className="font-mono text-[16px] tracking-[0.16em] uppercase mb-4" style={{ color: 'var(--color-amber)' }}>Recap</div>
-      <h1 className="font-display font-semibold text-[46px] mb-11" style={{ color: 'var(--color-ink-100)' }}>What you can now explain</h1>
+      <div
+        className="font-mono text-[20px] tracking-[0.16em] uppercase mb-4"
+        style={{ color: 'var(--color-amber)' }}
+      >
+        Recap
+      </div>
+
+      <h1
+        className="font-display font-semibold text-[46px] mb-11"
+        style={{ color: 'var(--color-ink-100)' }}
+      >
+        What you can now explain
+      </h1>
+
       <div className="grid grid-cols-2 gap-x-20 gap-y-7">
         {TAKEAWAYS.slice(0, shown).map((t, i) => (
           <motion.div
             key={t}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: (i % 6) * 0.05 }}
+            transition={{ duration: 0.3 }}
             className="flex items-start gap-4 font-body text-[21px] leading-snug"
             style={{ color: 'var(--color-ink-300)' }}
           >
-            <span className="font-mono text-[15px] mt-1 shrink-0" style={{ color: 'var(--color-teal)' }}>
+            <span
+              className="font-mono text-[15px] mt-1 shrink-0"
+              style={{ color: 'var(--color-teal)' }}
+            >
               {String(i + 1).padStart(2, '0')}
             </span>
+
             {t}
           </motion.div>
         ))}
@@ -53,7 +70,7 @@ function ClosingScene() {
         <p className="font-display font-semibold text-[46px] mt-2" style={{ color: 'var(--color-amber)' }}>
           It's about knowing why every piece exists.
         </p>
-        <p className="font-body text-[18px] mt-8" style={{ color: 'var(--color-ink-400)' }}>
+        <p className="font-body text-[20px] mt-8" style={{ color: 'var(--color-ink-400)' }}>
           Every component you saw tonight showed up to solve one specific problem. Nothing more.
         </p>
       </motion.div>
@@ -70,7 +87,7 @@ function CreditsScene() {
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         className="flex flex-col items-center"
       >
-        <div className="font-mono text-[15px] tracking-[0.18em] uppercase mb-6" style={{ color: 'var(--color-ink-400)' }}>
+        <div className="font-mono text-[20px] tracking-[0.18em] uppercase mb-6" style={{ color: 'var(--color-ink-400)' }}>
           Presented by
         </div>
         <motion.div
@@ -91,7 +108,7 @@ function CreditsScene() {
           <div className="font-display font-semibold text-[30px]" style={{ color: 'var(--color-ink-100)' }}>
             ADG Manipal
           </div>
-          <div className="font-body text-[17px] mt-1.5" style={{ color: 'var(--color-ink-400)' }}>
+          <div className="font-body text-[20px] mt-1.5" style={{ color: 'var(--color-ink-400)' }}>
             Apple Developers Group &middot; MIT Manipal
           </div>
         </motion.div>
@@ -101,7 +118,7 @@ function CreditsScene() {
 }
 
 export const section12Scenes: SceneDef[] = [
-  { id: 'recap', title: 'Recap', steps: 7, Component: RecapScene },
+  { id: 'recap', title: 'Recap', steps: 12, Component: RecapScene },
   { id: 'closing', title: 'Closing message', steps: 1, Component: ClosingScene, notes: 'End here. Thank the room.' },
   { id: 'credits', title: 'Credits', steps: 1, Component: CreditsScene, notes: 'Hold here for applause / questions.' },
 ];
