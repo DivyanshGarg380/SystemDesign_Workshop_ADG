@@ -89,15 +89,13 @@ function HowToDrawScene({ step }: { step: number }) {
   );
 }
 
-const AR_STUDENT = { x: 160, y: 400 };
-const AR_WEBAPP = { x: 620, y: 400 };
-const AR_SUBMISSIONS = { x: 620, y: 690 };
-const AR_DB = { x: 1280, y: 400 };
-
-const AR_ADMIN = { x: 160, y: 820 };
-const AR_AUTH = { x: 400, y: 820 };
-
-const AR_AI_HINT = { x: 1510, y: 690 };
+const AR_STUDENT = { x: 180, y: 400 };
+const AR_WEBAPP = { x: 650, y: 400 };
+const AR_SUBMISSIONS = { x: 1180, y: 220 };
+const AR_DB = { x: 1180, y: 520 };
+const AR_ADMIN = { x: 180, y: 760 };
+const AR_AUTH = { x: 420, y: 760 };
+const AR_AI_HINT = { x: 1450, y: 680 };
 
 function LabXamNodes({ step }: { step: number }) {
   return (
@@ -118,23 +116,12 @@ function LabXamNodes({ step }: { step: number }) {
           y={AR_WEBAPP.y}
           type="server"
           label="LabXam"
-          sublabel="Read questions · Submit reports"
+          sublabel="React & TypeScript"
           status="healthy"
         />
       )}
 
-      {step >= 2 && (
-        <Node
-          x={AR_DB.x}
-          y={AR_DB.y}
-          type="database"
-          label="Question Database"
-          sublabel="Live questions"
-          status="healthy"
-        />
-      )}
-
-      {/* Submission flow */}
+      {/* Submission / review flow — intentionally above database */}
 
       {step >= 3 && (
         <Node
@@ -143,6 +130,19 @@ function LabXamNodes({ step }: { step: number }) {
           type="queue"
           label="Review Queue"
           sublabel="New submissions & reports"
+          status="healthy"
+        />
+      )}
+
+      {/* Live database */}
+
+      {step >= 2 && (
+        <Node
+          x={AR_DB.x}
+          y={AR_DB.y}
+          type="database"
+          label="Question Database"
+          sublabel="Supabase Postgres"
           status="healthy"
         />
       )}
@@ -171,15 +171,27 @@ function LabXamNodes({ step }: { step: number }) {
         />
       )}
 
-        <EdgeLayer>
-            {step >= 1 && <Edge from={AR_STUDENT} to={AR_WEBAPP} />}
-            {step >= 2 && <Edge from={AR_WEBAPP} to={AR_DB} />}
-            {step >= 3 && <Edge from={AR_WEBAPP} to={AR_SUBMISSIONS} />}
+      <EdgeLayer>
+        {/* Student uses LabXam */}
+        {step >= 1 && <Edge from={AR_STUDENT} to={AR_WEBAPP} />}
 
-            {step >= 5 && <Edge from={AR_ADMIN} to={AR_AUTH} />}
-            {step >= 5 && <Edge from={AR_AUTH} to={AR_WEBAPP} />}
-            {step >= 5 && <Edge from={AR_SUBMISSIONS} to={AR_DB} dashed />}
-        </EdgeLayer>
+        {/* LabXam reads from the live question database */}
+        {step >= 2 && <Edge from={AR_WEBAPP} to={AR_DB} />}
+
+        {/* Public submissions enter the review queue */}
+        {step >= 3 && (
+          <Edge from={AR_WEBAPP} to={AR_SUBMISSIONS} />
+        )}
+
+        {/* Protected admin path */}
+        {step >= 5 && <Edge from={AR_ADMIN} to={AR_AUTH} />}
+        {step >= 5 && <Edge from={AR_AUTH} to={AR_WEBAPP} />}
+
+        {/* Approved submissions eventually reach the live database */}
+        {step >= 5 && (
+          <Edge from={AR_SUBMISSIONS} to={AR_DB} dashed />
+        )}
+      </EdgeLayer>
     </>
   );
 }
@@ -294,7 +306,7 @@ export const architectureScenes: SceneDef[] = [
     steps: 7,
     Component: LabXamArchitectureScene,
     notes:
-      'Build the main path first: Student → LabXam → Question Database. Then add submissions, the admin, and the authentication gate. Land the key point: reading and submitting are public, but only an authenticated admin can approve content into the live database.',
+      'Build the main path first: Student → LabXam → Question Database. Then add the review queue above the database, followed by the admin and authentication gate. Land the key point: reading and submitting are public, but only an authenticated admin can approve content into the live database.',
   },
   {
     id: 'ai-solution-exercise',
