@@ -248,10 +248,10 @@ function DatabaseScene({ step }: { step: number }) {
         <Edge from={USER} to={SERVER} muted />
         <Edge from={SERVER} to={DB} muted />
       </EdgeLayer>
-      {step >= 0 && <Packet key={`p0-${step === 0}`} from={USER} to={SERVER} label="GET /questions" variant="request" duration={step === 0 ? 1 : 0.01} />}
-      {step >= 1 && <Packet key={`p1-${step === 1}`} from={SERVER} to={DB} label="find questions" variant="request" duration={step === 1 ? 1 : 0.01} />}
-      {step >= 2 && <Packet key={`p2-${step === 2}`} from={DB} to={SERVER} label="rows" variant="data" duration={step === 2 ? 1 : 0.01} />}
-      {step >= 3 && <Packet from={SERVER} to={USER} label="200 OK" variant="response" duration={1} />}
+      {step >= 0 && <Packet key={`p0-${step === 0}`} from={USER} to={SERVER} label="GET /questions" variant="request" duration={step === 0 ? 1.5 : 0.01} />}
+      {step >= 1 && <Packet key={`p1-${step === 1}`} from={SERVER} to={DB} label="find questions" variant="request" duration={step === 1 ? 1.5 : 0.01} />}
+      {step >= 2 && <Packet key={`p2-${step === 2}`} from={DB} to={SERVER} label="rows" variant="data" duration={step === 2 ? 1.5 : 0.01} />}
+      {step >= 3 && <Packet from={SERVER} to={USER} label="200 OK" variant="response" duration={1.5} />}
       {step === 3 && (
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.8 } }} className="absolute font-display font-semibold text-[25px]" style={{ left: 620, top: 700, color: 'var(--color-teal)' }}>
           Client to server, server to database, database to server, server to client.
