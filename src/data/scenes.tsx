@@ -1,6 +1,7 @@
 import type { FlatScene, SectionDef } from '../lib/types';
 import { section0Scenes } from '../components/scenes/s0-basics';
 import { section1Scenes } from '../components/scenes/s1-systemdesign';
+import { architectureScenes } from '../components/scenes/s1b-architecture';
 import { section2Scenes } from '../components/scenes/s2-scaling';
 import { section3Scenes } from '../components/scenes/s3-caching';
 import { section4Scenes } from '../components/scenes/s4-cdn';
@@ -15,7 +16,7 @@ import { section12Scenes } from '../components/scenes/s12-closing';
 
 export const sections: SectionDef[] = [
   { id: 'basics', eyebrow: 'Part 1', title: 'Web Basics', scenes: section0Scenes },
-  { id: 'sysdesign', eyebrow: 'Part 2', title: 'What Is System Design?', scenes: section1Scenes },
+  { id: 'sysdesign', eyebrow: 'Part 2', title: 'What Is System Design?', scenes: [...section1Scenes, ...architectureScenes] },
   { id: 'scaling', eyebrow: 'Part 3', title: 'Exam-Night Traffic', scenes: section2Scenes },
   { id: 'caching', eyebrow: 'Part 4', title: 'Caching', scenes: section3Scenes },
   { id: 'cdn', eyebrow: 'Part 5', title: 'Large Files & CDN', scenes: section4Scenes },

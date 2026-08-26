@@ -78,6 +78,37 @@ function ClosingScene() {
   );
 }
 
+function ExploreLabXamScene() {
+  return (
+    <div className="absolute inset-0 flex flex-col items-center justify-center">
+      <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center max-w-[1000px]">
+        <div className="font-mono text-[20px] tracking-[0.16em] uppercase mb-5" style={{ color: 'var(--color-amber)' }}>
+          Go see it live
+        </div>
+        <h1 className="font-display font-semibold text-[46px] leading-tight" style={{ color: 'var(--color-ink-100)' }}>
+          Everything we talked about tonight is running right now at
+        </h1>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.35, duration: 0.5 }}
+          className="inline-block mt-7 rounded-2xl px-10 py-5"
+          style={{ background: 'var(--color-panel)', border: '2px solid var(--color-teal)', boxShadow: '0 10px 30px -10px var(--color-teal)' }}
+        >
+          <span className="font-mono text-[38px] font-semibold" style={{ color: 'var(--color-teal)' }}>
+            labxam.vercel.app
+          </span>
+        </motion.div>
+        <p className="font-body text-[25px] mt-9 max-w-[760px] mx-auto" style={{ color: 'var(--color-ink-400)' }}>
+          Explore it for yourself and connect what you saw tonight to what's actually running in production.
+          Then take it further: study how similar apps you use every day are built and start building your own —
+          that's how these concepts actually stick.
+        </p>
+      </motion.div>
+    </div>
+  );
+}
+
 function CreditsScene() {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -120,5 +151,6 @@ function CreditsScene() {
 export const section12Scenes: SceneDef[] = [
   { id: 'recap', title: 'Recap', steps: 12, Component: RecapScene },
   { id: 'closing', title: 'Closing message', steps: 1, Component: ClosingScene, notes: 'End here. Thank the room.' },
+  { id: 'explore-labxam', title: 'Explore LabXam', steps: 1, Component: ExploreLabXamScene, notes: 'Point them to the URL. Encourage them to build their own projects too.' },
   { id: 'credits', title: 'Credits', steps: 1, Component: CreditsScene, notes: 'Hold here for applause / questions.' },
 ];
