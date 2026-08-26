@@ -8,7 +8,7 @@ const SERVERS = [{ x: 900, y: 260 }, { x: 900, y: 480 }, { x: 900, y: 700 }];
 function HealthCheckScene({ step }: { step: number }) {
   return (
     <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 10 · Optional, Something Fails" title="The load balancer keeps asking: are you okay?" sub="A regular health check, to every server, all the time." />
+      <SceneTitle eyebrow="Part 10 · Something Fails" title="The load balancer keeps asking: are you okay?" sub="A regular health check to every server is necessary." />
       <Node x={LB.x} y={LB.y} type="loadbalancer" label="Load Balancer" status="active" />
       {SERVERS.map((s, i) => <Node key={i} x={s.x} y={s.y} type="server" label={`Server ${i + 1}`} status="healthy" />)}
       <EdgeLayer>{SERVERS.map((s, i) => <Edge key={i} from={LB} to={s} muted dashed />)}</EdgeLayer>
@@ -25,7 +25,7 @@ function HealthCheckScene({ step }: { step: number }) {
 function FailoverScene({ step }: { step: number }) {
   return (
     <div className="absolute inset-0">
-      <SceneTitle eyebrow="Part 10 · Optional" title="Server 2 just died." />
+      <SceneTitle eyebrow="Part 10 · Something Fails" title="Server 2 just died" />
       <Prompt show={step === 0}>Server 2 just died. What now?</Prompt>
       <Node x={LB.x} y={LB.y} type="loadbalancer" label="Load Balancer" status="active" />
       {SERVERS.map((s, i) => (
@@ -42,7 +42,7 @@ function FailoverScene({ step }: { step: number }) {
         <motion.p
           initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 1, 0] }}
           transition={{ duration: 1.6, times: [0, 0.15, 0.75, 1] }}
-          className="absolute font-mono text-[16px]" style={{ left: 940, top: 220, color: 'var(--color-red)' }}
+          className="absolute font-mono text-[20px]" style={{ left: 990, top: 480, color: 'var(--color-red)' }}
         >
           ...no response. timed out.
         </motion.p>
@@ -54,7 +54,7 @@ function FailoverScene({ step }: { step: number }) {
         </>
       )}
       {step >= 3 && (
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.6 } }} className="absolute font-display font-semibold text-[19px]" style={{ left: 460, top: 780, color: 'var(--color-teal)' }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1.6 } }} className="absolute font-display font-semibold text-[25px]" style={{ left: 460, top: 780, color: 'var(--color-teal)' }}>
           The health check catches it. The load balancer stops sending it traffic. Students never notice.
         </motion.p>
       )}
@@ -65,14 +65,26 @@ function FailoverScene({ step }: { step: number }) {
 function RedundancyScene() {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center">
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center max-w-[900px]">
-        <h1 className="font-display font-semibold text-[38px]" style={{ color: 'var(--color-ink-100)' }}>
-          Redundancy, high availability, and backups
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center max-w-[900px]"
+      >
+        <h1
+          className="font-display font-semibold text-[40px]"
+          style={{ color: 'var(--color-ink-100)' }}
+        >
+          Redundancy, high availability and backups
         </h1>
-        <p className="font-body text-[18px] mt-4" style={{ color: 'var(--color-ink-400)' }}>
-          Multiple servers is redundancy. Automatic failover is what makes a system <i>highly available</i>.
-          And none of this replaces backups: a separate, regular copy of your data, for the day
-          replication itself isn't enough.
+
+        <p
+          className="font-body text-[25px] mt-4"
+          style={{ color: 'var(--color-ink-400)' }}
+        >
+          Multiple servers give you <i>redundancy</i>. Automatic failover turns that
+          redundancy into <i>high availability</i> and neither replaces backups:
+          separate, regular copies of your data that can save you when replication
+          alone isn't enough.
         </p>
       </motion.div>
     </div>
@@ -81,7 +93,7 @@ function RedundancyScene() {
 
 export const section9Scenes: SceneDef[] = [
   { id: 'chapter-failover', title: 'Chapter: Something Fails', steps: 1, Component: () => (
-    <ChapterBreak part="Part 10 · Optional" title="Something Fails" hook="Every system eventually has a bad night." />
+    <ChapterBreak part="Part 10" title="Something Fails" hook="Every system eventually has a bad night" />
   ), optional: true, notes: 'Pause here. Let the room reset before diving in.' },
   { id: 'health-check', title: 'Health checks', steps: 3, Component: HealthCheckScene, optional: true },
   { id: 'failover', title: 'Failover', steps: 4, Component: FailoverScene, optional: true, notes: 'Great room-participation moment even if trimmed elsewhere.' },
