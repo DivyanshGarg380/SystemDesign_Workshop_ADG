@@ -42,16 +42,13 @@ the section.
 ```
 src/
   components/
-    stage/          the reusable visual vocabulary: Node, Packet, Edge, Prompt,
-                     SceneTitle, MiniUser, Stage (the scaled 16:9 canvas)
-    scenes/          one file per workshop section (s0-basics.tsx … s12-closing.tsx),
-                     each exporting an array of SceneDef (id, title, steps, Component)
-    ProgressBar.tsx, Footer.tsx   chrome around the stage
+    stage/           the reusable visual vocabulary: Node, Packet, Edge, Prompt, SceneTitle, MiniUser, Stage
+    scenes/          one file per workshop section (s0-basics.tsx … s12-closing.tsx)
+    ProgressBar.tsx 
   data/scenes.tsx    assembles all sections into the flat, ordered scene list
   lib/types.ts       shared types + the 1600x900 stage coordinate system
   lib/helpers.ts     small layout helpers (grid positions, staggered delays)
-  App.tsx            the state machine: current scene + current animation step,
-                     keyboard handling
+  App.tsx            the state machine: current scene + current animation step, keyboard handling
 ```
 
 Every scene component receives a single `step: number` prop and switches its rendered
