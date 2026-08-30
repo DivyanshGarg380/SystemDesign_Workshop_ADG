@@ -1,5 +1,3 @@
-<img src="./assets/adg-logo.png" width="96" alt="ADG logo" />
-
 # HLD Workshop
 *What Actually Happens When You Tap a Button?*
 
@@ -14,6 +12,15 @@ System Design workshop. Built with React + TypeScript + Framer Motion + Tailwind
 
 No slides in the PowerPoint sense — every "slide" is a live scene where request packets,
 servers, caches, and queues visually animate to explain the concept, not decorate it.
+All 13 sections are covered in full during the session — nothing is skipped.
+
+[LabXam](https://labxam.vercel.app) is used live during the workshop as the running
+example: every system design concept in this deck (load balancing, caching, CDN,
+queues, rate limiting, replicas/sharding, failover, search, observability) is tied
+back to how it would apply to LabXam. The workshop also includes a hands-on segment
+teaching the audience how to draw architecture diagrams for a system like this one.
+
+<img src="./assets/adg-logo.png" width="96" alt="ADG logo" />
 
 ## Controls
 
@@ -23,13 +30,12 @@ servers, caches, and queues visually animate to explain the concept, not decorat
 | `←` | Go back one state / scene |
 | `Home` | Jump to the very first scene |
 | `End` | Jump to the closing scene |
-| `S` | Skip the rest of the current section (handy for the flex sections if short on time) |
+| `S` | Skip to the end of the current section |
 | `N` | Toggle the presenter note for the current scene (small, bottom-right, not visible to the audience unless you say so) |
 | `F` | Toggle fullscreen |
 
 The top bar shows section progress (13 sections total) and which scene you're on within
-the section. Flex sections are labelled in the top bar so you know at a glance what's
-safe to skip.
+the section.
 
 ## Project structure
 
@@ -73,25 +79,15 @@ way through observability in Part 12.
    workers draining the queue, publish-subscribe (brief)
 7. **AI Requests & Rate Limiting** — one user hammers an expensive AI feature,
    rate limiting, and the full picture: queue + worker + cache working together
-8. **Growing Beyond Manipal** *(flex)* — latency and distance, regional
-   points of presence
-9. **Database Under Strain** *(flex)* — one database strains, read replicas,
+8. **Growing Beyond Manipal** — latency and distance, regional points of presence
+9. **Database Under Strain** — one database strains, read replicas,
    sharding (high-level only)
-10. **Something Fails** *(flex)* — health checks, failover ("Server 2 just
-    died — what now?"), redundancy & backups
-11. **Large-Scale Search** *(flex)* — why a plain query doesn't scale,
-    the search index
-12. **Knowing What's Broken** *(flex)* — one request leaves a trace, then
-    logs vs. metrics vs. tracing
+10. **Something Fails** — health checks, failover ("Server 2 just died — what
+    now?"), redundancy & backups
+11. **Large-Scale Search** — why a plain query doesn't scale, the search index
+12. **Knowing What's Broken** — one request leaves a trace, then logs vs.
+    metrics vs. tracing
 13. **Closing** — recap of every takeaway, closing message
-
-## What's flexible / skippable
-
-Sections 8-12 (geographic distribution, DB scaling/sharding, failover, search,
-observability) are flagged as flex in the data model, shown as such in the top
-progress bar, and can be jumped past instantly with `S`. The core path
-(sections 1-7) is built to comfortably fill 60-90 minutes on its own, matching
-the workshop plan's guidance that the first six topics get the most time.
 
 ## Audience pause moments
 
