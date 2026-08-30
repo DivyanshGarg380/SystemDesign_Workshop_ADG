@@ -1,4 +1,13 @@
+<img src="./assets/adg-logo.png" width="96" alt="ADG logo" />
+
 # HLD Workshop
+*What Actually Happens When You Tap a Button?*
+
+![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=flat&logo=framer&logoColor=white)
+![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
 
 An interactive, keyboard-driven, non-scrolling slide deck for the MIT Manipal High-Level
 System Design workshop. Built with React + TypeScript + Framer Motion + Tailwind CSS v4.
@@ -14,13 +23,13 @@ servers, caches, and queues visually animate to explain the concept, not decorat
 | `←` | Go back one state / scene |
 | `Home` | Jump to the very first scene |
 | `End` | Jump to the closing scene |
-| `S` | Skip the rest of the current section (useful for optional sections if short on time) |
+| `S` | Skip the rest of the current section (handy for the flex sections if short on time) |
 | `N` | Toggle the presenter note for the current scene (small, bottom-right, not visible to the audience unless you say so) |
 | `F` | Toggle fullscreen |
 
 The top bar shows section progress (13 sections total) and which scene you're on within
-the section. Optional sections are labelled "optional" in the top bar so you know at a
-glance what's safe to skip.
+the section. Flex sections are labelled in the top bar so you know at a glance what's
+safe to skip.
 
 ## Project structure
 
@@ -64,23 +73,23 @@ way through observability in Part 12.
    workers draining the queue, publish-subscribe (brief)
 7. **AI Requests & Rate Limiting** — one user hammers an expensive AI feature,
    rate limiting, and the full picture: queue + worker + cache working together
-8. *(optional)* **Growing Beyond Manipal** — latency and distance, regional
+8. **Growing Beyond Manipal** *(flex)* — latency and distance, regional
    points of presence
-9. *(optional)* **Database Under Strain** — one database strains, read replicas,
+9. **Database Under Strain** *(flex)* — one database strains, read replicas,
    sharding (high-level only)
-10. *(optional)* **Something Fails** — health checks, failover ("Server 2 just
+10. **Something Fails** *(flex)* — health checks, failover ("Server 2 just
     died — what now?"), redundancy & backups
-11. *(optional)* **Large-Scale Search** — why a plain query doesn't scale,
+11. **Large-Scale Search** *(flex)* — why a plain query doesn't scale,
     the search index
-12. *(optional)* **Knowing What's Broken** — one request leaves a trace, then
+12. **Knowing What's Broken** *(flex)* — one request leaves a trace, then
     logs vs. metrics vs. tracing
 13. **Closing** — recap of every takeaway, closing message
 
-## What's marked optional / skippable
+## What's flexible / skippable
 
 Sections 8-12 (geographic distribution, DB scaling/sharding, failover, search,
-observability) are flagged `optional` in the data model, shown as "optional" in
-the top progress bar, and can be jumped past instantly with `S`. The core path
+observability) are flagged as flex in the data model, shown as such in the top
+progress bar, and can be jumped past instantly with `S`. The core path
 (sections 1-7) is built to comfortably fill 60-90 minutes on its own, matching
 the workshop plan's guidance that the first six topics get the most time.
 
