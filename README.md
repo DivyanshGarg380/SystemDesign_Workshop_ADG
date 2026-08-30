@@ -69,29 +69,29 @@ way through observability in Part 12.
 2. **What Is System Design?** — one server/one database is enough, the core
    principle (start simple, add complexity when a real problem demands it),
    transition into the LabXam story
-3. **Exam-Night Traffic** — intro, one server floods, vertical scaling, horizontal
+3. **What is LabXam?** — Demonstrating the features of LabXam and why its perfect
+   for this workshop
+4. **Architecture diagram** — Learn to draw simple architecture diagrams (not UML Diagrams)
+4. **Exam-Night Traffic** — intro, one server floods, vertical scaling, horizontal
    scaling, the load balancer
-4. **Caching** — repeated requests, cache miss (full walk-through), cache hit
+5. **Caching** — repeated requests, cache miss (full walk-through), cache hit
    (shorter path, contrasted against the miss)
-5. **Large Files & CDN** — the app server strains under file downloads, object
+6. **Large Files & CDN** — the app server strains under file downloads, object
    storage, a distant origin is slow, CDN edge caching is fast
-6. **Async Work & Queues** — synchronous work blocks the request, the queue,
+7. **Async Work & Queues** — synchronous work blocks the request, the queue,
    workers draining the queue, publish-subscribe (brief)
-7. **AI Requests & Rate Limiting** — one user hammers an expensive AI feature,
+8. **AI Requests & Rate Limiting** — one user hammers an expensive AI feature,
    rate limiting, and the full picture: queue + worker + cache working together
-8. **Growing Beyond Manipal** — latency and distance, regional points of presence
-9. **Database Under Strain** — one database strains, read replicas,
+9. **Growing Beyond Manipal** — latency and distance, regional points of presence
+10. **Database Under Strain** — one database strains, read replicas,
    sharding (high-level only)
-10. **Something Fails** — health checks, failover ("Server 2 just died — what
+11. **Something Fails** — health checks, failover ("Server 2 just died — what
     now?"), redundancy & backups
-11. **Large-Scale Search** — why a plain query doesn't scale, the search index
-12. **Knowing What's Broken** — one request leaves a trace, then logs vs.
+12. **Large-Scale Search** — why a plain query doesn't scale, the search index
+13. **Knowing What's Broken** — one request leaves a trace, then logs vs.
     metrics vs. tracing
-13. **Closing** — recap of every takeaway, closing message
+14. **Closing** — recap of every takeaway, closing message
 
-## Audience pause moments
+## Presenter/Instructor
 
-Scenes that are meant to stop and wait for audience guesses (e.g. "What do you
-think breaks first?", "Server 2 just died. What now?") render as a distinct
-pill prompt at the bottom of the stage and do **not** auto-reveal the answer —
-you control the reveal with the next keypress.
+**Divyansh Garg**
