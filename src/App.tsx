@@ -4,8 +4,7 @@ import { flatScenes, sectionCount } from './data/scenes';
 import Stage from './components/stage/Stage';
 import ProgressBar from './components/ProgressBar';
 import Footer from './components/Footer';
-import SceneOverview from './components/SceneOverview';
-
+import SceneOverview from './components/Sceneoverview';
 interface Pos { sceneIdx: number; step: number }
 
 export default function App() {
