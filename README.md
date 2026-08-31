@@ -1,5 +1,5 @@
 # HLD Workshop
-*What Actually Happens When You Tap a Button?*
+*Before Software Engineers, You are Engineers*
 
 ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
